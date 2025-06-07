@@ -18,5 +18,13 @@ In "Services" tab:
 
 Works, confirmed. 
 
+## Checking v3 RPi camera
+Both libcamera and rpicam libraries are pre-installed. See https://www.raspberrypi.com/documentation/computers/camera_software.html
+
+Cannot get a live preview, no X-view device available on headless Pi. 
+
+Can save stills though: 
+``rpicam-jpeg --output test.jpg``
+
 
 
