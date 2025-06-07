@@ -26,5 +26,13 @@ Cannot get a live preview, no X-view device available on headless Pi.
 Can save stills though: 
 ``rpicam-jpeg --output test.jpg``
 
+### Testing Python recording
+Copied over ``videos_v1.2.py`` from PICT_v2 repo. 
 
+Testing imports, found that ``cv2`` and ``picamera2`` are not preinstalled (Python 3.11 is though). 
 
+Installing missing dependencies: 
+```
+sudo apt install -y python3-opencv python3-picamera2
+```
+It takes a while to compile... 
