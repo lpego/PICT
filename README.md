@@ -18,7 +18,7 @@ In "Services" tab:
 
 Works, confirmed. 
 
-## Checking v3 RPi camera
+# Checking v3 RPi camera
 Both libcamera and rpicam libraries are pre-installed. See https://www.raspberrypi.com/documentation/computers/camera_software.html
 
 Cannot get a live preview, no X-view device available on headless Pi. 
@@ -26,8 +26,11 @@ Cannot get a live preview, no X-view device available on headless Pi.
 Can save stills though: 
 ``rpicam-jpeg --output test.jpg``
 
-### Testing Python recording
-Copied over ``videos_v1.2.py`` from PICT_v2 repo. 
+# Python script
+Copied over ``videos_v1.2.py`` from PICT_v2 repo: 
+```
+scp videos_v1.2.py pi@[IP]:/home/pi
+```
 
 Testing imports, found that ``cv2`` and ``picamera2`` are not preinstalled (Python 3.11 is though). 
 
@@ -36,3 +39,5 @@ Installing missing dependencies:
 sudo apt install -y python3-opencv python3-picamera2
 ```
 It takes a while to compile... 
+
+## Testing recording
