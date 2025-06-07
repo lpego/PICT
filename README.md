@@ -41,3 +41,9 @@ sudo apt install -y python3-opencv python3-picamera2
 It takes a while to compile... 
 
 ## Testing recording
+Recoding works as expected, only thing the stack is a bit slow to start up, resulting in some dealy from script launch to actual start of recording. 
+
+Added `.sh` script for logging time and errors too, had to remove spaces in `time = [...]` assignment... 
+
+# TODO
+Need to find a way to display live preview for camera focussing etc. 
