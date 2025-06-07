@@ -1,0 +1,36 @@
+import socket
+import uuid
+from datetime import datetime as dt
+import time
+import cv2
+# import numpy as np
+from picamera2 import Picamera2
+
+qual = 22  # Not directly used; OpenCV controls quality via codec
+video_duration = 1800
+video_number = 336
+UID = uuid.uuid4().hex[:4].upper() + '_' + dt.now().strftime('%Y-%m-%d_%H-%M')
+HostName = socket.gethostname()
+
+picam2 = Picamera2()
+config = picam2.create_video_configuration(
+    main={"size": (1296, 972), "format": "RGB888"},
+    controls={"FrameRate": 15}
+)
+picam2.configure(config)
+
+for h in range(video_number):
+    filename = f"/home/pi/record/videos/{HostName}_{h+1:03d}_{UID}.mp4"
+    fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+    out = cv2.VideoWriter(filename, fourcc, 15, (1296, 972))
+    picam2.start()
+    start = time.time()
+    while (time.time() - start) < video_duration:
+        frame = picam2.capture_array()
+        # Annotate frame
+        text = f"{HostName}, 15 fps, Q={qual}, {dt.now().strftime('%Y-%m-%d %H:%M:%S')}"
+        cv2.putText(frame, text, (10, 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,255), 2, cv2.LINE_AA)
+        out.write(frame)
+        time.sleep(0.2)
+    picam2.stop()
+    out.release()
