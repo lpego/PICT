@@ -45,5 +45,15 @@ Recoding works as expected, only thing the stack is a bit slow to start up, resu
 
 Added `.sh` script for logging time and errors too, had to remove spaces in `time = [...]` assignment... 
 
+Installing crontab
+``crontab -e``
+and paste at the bottom of the file: 
+```
+0 21 * * * sudo killall python
+1 21 * * * sudo ifconfig wlan0 down
+55 5 * * * sudo reboot
+0 6 * * * ./home/pi/start_video_v2.0.py
+```
+
 # TODO
 Need to find a way to display live preview for camera focussing etc. 
