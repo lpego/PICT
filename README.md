@@ -58,6 +58,9 @@ and paste at the bottom of the file:
 [!NOTE]
 Leave `kilalll` command only here in `crontab`, do not put it in the `.sh` file. 
 
+### Experimenting with camera focus
+The raspberry Pi camera v3 has electromagnetic autofocus, fully supported in libcamera (https://www.raspberrypi.com/documentation/computers/camera_software.html). 
+
 
 
 # Implementing live preview server
