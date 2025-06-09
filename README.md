@@ -55,13 +55,18 @@ and paste at the bottom of the file:
 0 6 * * * /home/pi/start_video_v2.0.py
 ```
 
-[!NOTE]
-Leave `kilalll` command only here in `crontab`, do not put it in the `.sh` file. 
+> [!NOTE]
+> Leave `kilalll` command only here in `crontab`, do not put it in the `.sh` file. 
 
 ### Experimenting with camera focus
 The raspberry Pi camera v3 has electromagnetic autofocus, fully supported in libcamera (https://www.raspberrypi.com/documentation/computers/camera_software.html). 
 
+Autofocus set to continuous is *crazy* fast, it might impact resource usage if run constantly. Might be better to run an autofocus sweep every once in a while, setting 
 
+> [!HINT]
+> Pay attention that both `picamera2` and `licamera` have a control submodule, but the Afmode keys are encoded differently! 
+
+Also implemented autofocus toggle on live preview. 
 
 # Implementing live preview server
 Using FastAPI and uvicorn to stream MJPEG via HTTP. 
@@ -91,8 +96,6 @@ On a browser (e.g. Firefox) go to: `192.168.137.148:8000`
 
 WORKS! Very basic and with some latency but not too bad. 
 Attempting to make server restart itself upon changing preview parameters is a bit more tricky, does not do it automatically, needs more work. 
-
-
 
 # TODOs
 Recording .mp4 has several problems: 
