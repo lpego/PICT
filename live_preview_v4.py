@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Form
 from fastapi.responses import StreamingResponse, HTMLResponse, RedirectResponse
 from picamera2 import Picamera2
+from picamera2 import controls
 import cv2
 import threading
 import time
@@ -54,10 +55,12 @@ picam2.start()
 # Apply focus controls
 def apply_focus_controls():
     if settings["autofocus"]:
-        picam2.set_controls({"AfMode": "auto"})
+        picam2.set_controls({
+            "AfMode": controls.AfModeEnum.Auto
+        })
     else:
         picam2.set_controls({
-            "AfMode": "manual",
+            "AfMode": controls.AfModeEnum.Manual,
             "LensPosition": float(settings["manual_focus"])
         })
 
