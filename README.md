@@ -64,10 +64,20 @@ Leave `kilalll` command only here in `crontab`, do not put it in the `.sh` file.
 Using FastAPI to stream MJPEG via HTTP. 
 
 Installing dependencies: 
-```
+<!-- ```
 sudo apt update
 sudo apt install python3-pip
 pip3 install fastapi uvicorn
+``` -->
+```
+sudo apt update
+sudo apt install python3-fastapi python-uvicorn
 ```
 
 Start stream with `live_preview_v1.0.py`. 
+[...]
+
+# TODOs
+Recording .mp4 has several problems: 
+ - If the recording script gets killed externally, the last video (i.e. the one being recorded) will be "corrupted", because the file ending or something similar does not get written. 
+ - It seems like it is far less power efficient on the RPi Zero than writing raw .h264 format... 
