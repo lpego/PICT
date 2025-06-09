@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Ensure that no other processes are using the camera
-sudo killall python || true
+# # Ensure that no other processes are using the camera
+# sudo killall python || true
 
 # Start Python script for video recording and redirect output (STD.OUT & STD.ERR)
 # must be in the same directory as the .py script
