@@ -23,17 +23,32 @@ signal.signal(signal.SIGTERM, signal_handler) # For kill
 
 video_duration = 1800 # each video's length in seconds
 video_number = 336 # max number of videos to record
-Framerate = 15  # Set the desired framerate here
+Framerate = 5  # Set the desired framerate here
+Focus = "Auto"  # Set to "Auto" or "Manual"
+Focus_distance = 30.0  # Only used if Focus is "Manual"; must be between 0 and 1024
 UID = dt.now().strftime('%Y-%m-%d_%H-%M') + '_' + uuid.uuid4().hex[:4].upper()
 HostName = socket.gethostname()
 
 picam2 = Picamera2()
+
+if Focus == "Auto":
+    controls_dict = {
+        "FrameRate": Framerate,
+        "AfMode": controls.AfModeEnum.Continuous
+    }
+elif Focus == "Manual":
+    lens_position = Focus_distance if 0 <= Focus_distance <= 1024 else 30.0
+    controls_dict = {
+        "FrameRate": Framerate,
+        "AfMode": controls.AfModeEnum.Manual,
+        "LensPosition": lens_position
+    }
+else:
+    raise ValueError("Focus must be either 'Auto' or 'Manual'")
+
 config = picam2.create_video_configuration(
     main={"size": (1296, 972), "format": "RGB888"},
-    controls={
-              "FrameRate": Framerate,
-              "AfMode": controls.AfModeEnum.Continuous
-              }
+    controls=controls_dict
 )
 picam2.configure(config)
 
