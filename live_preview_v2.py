@@ -47,13 +47,13 @@ def index():
             <h3>Settings</h3>
             <form method="post" action="/set">
                 <label>Resolution:</label>
-                <select name="resolution">
+                <select name="resolution_str">
                     <option value="640x480">640x480</option>
                     <option value="320x240">320x240</option>
                     <option value="1280x720">1280x720</option>
                 </select>
                 <label>Framerate:</label>
-                <select name="framerate">
+                <select name="framerate_int">
                     <option value="5">5 FPS</option>
                     <option value="10">10 FPS</option>
                     <option value="20" selected>20 FPS</option>
@@ -66,11 +66,12 @@ def index():
     """
 
 @app.post("/set")
-def set_params(resolution_str: str = Form(...), framerate: int = Form(...)):
+def set_params(resolution_str: str = Form(...), framerate_int: int = Form(...)):
     global resolution, framerate, picam2
 
     width, height = map(int, resolution_str.split('x'))
     resolution = (width, height)
+    frameraete = framerate_int
 
     # Stop, reconfigure, and restart the camera
     picam2.stop()
