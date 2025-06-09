@@ -52,8 +52,22 @@ and paste at the bottom of the file:
 0 21 * * * sudo killall python
 1 21 * * * sudo ifconfig wlan0 down
 55 5 * * * sudo reboot
-0 6 * * * ./home/pi/start_video_v2.0.py
+0 6 * * * /home/pi/start_video_v2.0.py
 ```
 
-# TODO
-Need to find a way to display live preview for camera focussing etc. 
+[!NOTE]
+Leave `kilalll` command only here in `crontab`, do not put it in the `.sh` file. 
+
+
+
+# Implementing live preview server
+Using FastAPI to stream MJPEG via HTTP. 
+
+Installing dependencies: 
+```
+sudo apt update
+sudo apt install python3-pip
+pip3 install fastapi uvicorn
+```
+
+Start stream with `live_preview_v1.0.py`. 
