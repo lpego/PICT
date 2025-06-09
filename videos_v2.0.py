@@ -9,7 +9,7 @@ from picamera2 import Picamera2
 qual = 22  # Not directly used; OpenCV controls quality via codec
 video_duration = 1800
 video_number = 336
-UID = uuid.uuid4().hex[:4].upper() + '_' + dt.now().strftime('%Y-%m-%d_%H-%M')
+UID = dt.now().strftime('%Y-%m-%d_%H-%M') + '_' + uuid.uuid4().hex[:4].upper()
 HostName = socket.gethostname()
 
 picam2 = Picamera2()
