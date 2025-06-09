@@ -87,6 +87,9 @@ python -m uvicorn live_preview_v1:app --host 0.0.0.0 --port 8000
 On a browser (e.g. Firefox) go to: `192.168.137.148:8000`
 
 WORKS! Very basic and with some latency but not too bad. 
+Attempting to make server restart itself upon changing preview parameters is a bit more tricky, does not do it automatically, needs more work. 
+
+
 
 # TODOs
 Recording .mp4 has several problems: 
