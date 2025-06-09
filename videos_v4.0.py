@@ -56,7 +56,7 @@ video_dir = "/home/pi/record/videos/"
 os.makedirs(video_dir, exist_ok=True)  # Ensure directory exists
 
 for h in range(video_number):
-    filename = f"{video_dir}{HostName}_{h+1:03d}_{UID}.mp4"
+    filename = f"{video_dir}{HostName}_{UID}_{h+1:03d}.mp4"
     fourcc = cv2.VideoWriter_fourcc(*'mp4v')
     out = cv2.VideoWriter(filename, fourcc, Framerate, (1296, 972))
     picam2.start()
