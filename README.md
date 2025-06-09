@@ -61,7 +61,7 @@ Leave `kilalll` command only here in `crontab`, do not put it in the `.sh` file.
 
 
 # Implementing live preview server
-Using FastAPI to stream MJPEG via HTTP. 
+Using FastAPI and uvicorn to stream MJPEG via HTTP. 
 
 Installing dependencies: 
 <!-- ```
@@ -74,8 +74,15 @@ sudo apt update
 sudo apt install python3-fastapi python-uvicorn
 ```
 
-Start stream with `live_preview_v1.0.py`. 
-[...]
+Transfer over to the Pi the Python script `live_preview_v1.0.py`: 
+```
+scp live_preview_v1.0.py pi@192.168.137.148:/home/pi/
+```
+
+Start the live server with `uvicorn`: 
+```
+python -m uvicorn live_preview_v1:app --host 0.0.0.0 --port 8000
+```
 
 # TODOs
 Recording .mp4 has several problems: 
