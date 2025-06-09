@@ -84,7 +84,7 @@ scp live_preview_v1.0.py pi@192.168.137.148:/home/pi/
 
 Start the live server with `uvicorn`: 
 ```
-python -m uvicorn live_preview_v1:app --host 0.0.0.0 --port 8000
+python -m uvicorn live_preview_v4:app --host 0.0.0.0 --port 8000
 ```
 
 On a browser (e.g. Firefox) go to: `192.168.137.148:8000`
