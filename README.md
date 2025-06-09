@@ -63,7 +63,7 @@ The raspberry Pi camera v3 has electromagnetic autofocus, fully supported in lib
 
 Autofocus set to continuous is *crazy* fast, it might impact resource usage if run constantly. Might be better to run an autofocus sweep every once in a while, setting 
 
-> [!HINT]
+> [!TIP]
 > Pay attention that both `picamera2` and `licamera` have a control submodule, but the Afmode keys are encoded differently! 
 
 Also implemented autofocus toggle on live preview. 
