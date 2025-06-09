@@ -41,7 +41,7 @@ sudo apt install -y python3-opencv python3-picamera2
 It takes a while to compile... 
 
 ## Testing recording
-Recoding works as expected, only thing the stack is a bit slow to start up, resulting in some dealy from script launch to actual start of recording. 
+Recoding works as expected, only thing the stack is a bit slow to start up, resulting in some delay from script launch to actual start of recording. 
 
 Added `.sh` script for logging time and errors too, had to remove spaces in `time = [...]` assignment... 
 
@@ -52,7 +52,7 @@ and paste at the bottom of the file:
 0 21 * * * sudo killall python
 1 21 * * * sudo ifconfig wlan0 down
 55 5 * * * sudo reboot
-0 6 * * * /home/pi/start_video_v2.0.py
+0 4 * * * /home/pi/start_video_v2.0.py
 ```
 
 > [!NOTE]
@@ -97,7 +97,15 @@ On a browser (e.g. Firefox) go to: `192.168.137.148:8000`
 WORKS! Very basic and with some latency but not too bad. 
 Attempting to make server restart itself upon changing preview parameters is a bit more tricky, does not do it automatically, needs more work. 
 
+# Testing battery and storage efficiency
+*Test 1 -- 09 Jun, 11pm, battery 30Ah at 100%*
+
+
 # TODOs
-Recording .mp4 has several problems: 
- - If the recording script gets killed externally, the last video (i.e. the one being recorded) will be "corrupted", because the file ending or something similar does not get written. 
- - It seems like it is far less power efficient on the RPi Zero than writing raw .h264 format... 
+Test for power and storage efficiency
+ - It seems like recording .mp4 is far less power efficient on the RPi Zero than writing raw .h264 format... 
+ - Running autofocus in "continuous" mode might also have an impact
+
+ # Resources
+ Picamera2 manual: https://datasheets.raspberrypi.com/camera/picamera2-manual.pdf
+ General RPi camera references: https://www.raspberrypi.com/documentation/computers/camera_software.html
