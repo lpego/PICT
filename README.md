@@ -99,7 +99,7 @@ Attempting to make server restart itself upon changing preview parameters is a b
 
 # Testing battery and storage efficiency
 *Test 1 -- 09 Jun, 11pm, battery 30Ah at 100%*
-
+Recording at 1296*972px@10fps, autofocus continuous.
 
 # TODOs
 Test for power and storage efficiency
