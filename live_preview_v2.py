@@ -66,10 +66,10 @@ def index():
     """
 
 @app.post("/set")
-def set_params(resolution: str = Form(...), framerate_input: int = Form(...)):
+def set_params(resolution_str: str = Form(...), framerate_input: int = Form(...)):
     global resolution, framerate, picam2
 
-    width, height = map(int, resolution.split('x'))
+    width, height = map(int, resolution_str.split('x'))
     resolution = (width, height)
     framerate = framerate_input
 
