@@ -36,6 +36,7 @@ Testing imports, found that ``cv2`` and ``picamera2`` are not preinstalled (Pyth
 
 Installing missing dependencies: 
 ```
+sudo apt update 
 sudo apt install -y python3-opencv python3-picamera2
 ```
 It takes a while to compile... 
@@ -99,7 +100,10 @@ Attempting to make server restart itself upon changing preview parameters is a b
 
 # Testing battery and storage efficiency
 *Test 1 -- 09 Jun, 11pm, battery 30Ah at 100%*
-Recording at 1296*972px@10fps, autofocus continuous.
+Recording at 1296*972px@10fps, autofocus continuous. 
+ - At 7:30 am, battery at 68% ... 
+ - small mistake, forgo to to change the crontab, recorded using `start_video_v2.0.sh`... 
+ - fixing at 7:30am, restarted recording with `start_video_v2.0.sh`.
 
 # TODOs
 Test for power and storage efficiency
@@ -107,5 +111,5 @@ Test for power and storage efficiency
  - Running autofocus in "continuous" mode might also have an impact
 
  # Resources
- Picamera2 manual: https://datasheets.raspberrypi.com/camera/picamera2-manual.pdf
- General RPi camera references: https://www.raspberrypi.com/documentation/computers/camera_software.html
+  - Picamera2 manual: https://datasheets.raspberrypi.com/camera/picamera2-manual.pdf
+  - General RPi camera references: https://www.raspberrypi.com/documentation/computers/camera_software.html
