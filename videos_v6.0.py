@@ -9,6 +9,8 @@ import cv2
 from picamera2 import MappedArray, Picamera2
 from picamera2.encoders import H264Encoder, Quality
 from picamera2 import controls
+from picamera2 import Picamera2
+from libcamera import controls
 
 ### Parameters declaration
 video_duration = 10
@@ -23,9 +25,9 @@ HostName = socket.gethostname()
 ### Initialize Picamera2 custom config
 picam2 = Picamera2()
 picam2.video_configuration.controls.FrameRate = target_fps
-picam2.video_configuration.controls.AfMode = controls.AfModeEnum.Continuous
 picam2.video_configuration.main.size = (1296, 972)
 picam2.video_configuration.main.format = "YUV420"
+picam2.set_controls({"AfMode": controls.AfModeEnum.Continuous})
 picam2.configure("video")
 
 # ### Basic config for testing
