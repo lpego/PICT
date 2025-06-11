@@ -121,6 +121,8 @@ Fixed event handling loop: https://github.com/lpego/PICT/commit/a4c268f6f0c5717f
 
 Working on the framerate: trying to get the framerate into `picamera2` config as easily as possible: #105c2bf7ad3cead537078757899a2d92261b0555
 
+> [!IMPORTANT]
+> When saving `.h264` files, ffmpeg / ffprobe will report an _incorrect_ FPS! This is due to the fact that `.h264` is not really a container and ffmepg cannot guess the framerate...
 
 # TODOs
 Test for power and storage efficiency
