@@ -28,7 +28,14 @@ picam2.video_configuration.controls.FrameRate = target_fps
 picam2.video_configuration.main.size = (1296, 972)
 picam2.video_configuration.main.format = "YUV420"
 picam2.set_controls({"AfMode": controls.AfModeEnum.Continuous})
+# picam2.set_controls({"AfMode": controls.AfModeEnum.Manual, "LensPosition": 0.0})
 picam2.configure("video")
+
+
+###
+# print(picam2.camera_configuration()['sensor'])
+# print(picam2.camera_configuration()['raw'])
+
 
 # ### Basic config for testing
 # picam2 = Picamera2()
@@ -67,7 +74,7 @@ for h in range(video_number):
     print(f"Recording {filename}")
 
     ### Start camera with custom config and overlay text
-    # picam2.start()
+    picam2.start()
     picam2.set_controls({"FrameRate": target_fps})
     start = time.time()
     picam2.start_recording(encoder, f"{video_dir}OverlayTest_{HostName}_{UID}_{h+1:03d}.h264", quality=Quality.HIGH)
