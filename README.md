@@ -119,6 +119,8 @@ Implemented in `videos_v6.0.py`, functional state with commit https://github.com
 
 Fixed event handling loop: https://github.com/lpego/PICT/commit/a4c268f6f0c5717faa0e7d5ae4ae189783ae92f9
 
+Working on the framerate: trying to get the framerate into `picamera2` config as easily as possible: #105c2bf7ad3cead537078757899a2d92261b0555
+
 
 # TODOs
 Test for power and storage efficiency
