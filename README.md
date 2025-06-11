@@ -108,6 +108,9 @@ Recording at 1296*972px@10fps, autofocus continuous.
 
 Writing `.mp4` is very storage efficient, but consumes a lot more power, would be better to directly write frames in `.h264` or `.avi`... 
 
+# Testing direct recording (uncompressed)
+Testing `.h264` recording, with script `video_v5.0.py`
+
 # TODOs
 Test for power and storage efficiency
  - It seems like recording .mp4 is far less power efficient on the RPi Zero than writing raw .h264 format... 
