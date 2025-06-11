@@ -14,9 +14,9 @@ from libcamera import controls
 video_duration = 10
 video_number = 6
 resolution = (1296, 972)  # Set the desired resolution as (width, height)
-target_fps = 10
-focus = "Auto"  # Set to "Auto" or "Manual"
-focus_distance = 30.0  # Only used if Focus is "Manual"; must be between 0 and 1024
+target_fps = 30
+focus = "Manual"  # Set to "Auto" or "Manual"
+focus_distance = 10.0  # Only used if Focus is "Manual"; 0 (infinitY) and 10.0 (approx. 10cm); default is 0.5 (focus at ~1m))
 video_dir = "/home/pi/record/videos/"
 os.makedirs(video_dir, exist_ok=True)
 
@@ -29,7 +29,7 @@ picam2 = Picamera2()
 if focus == "Auto":
     picam2.set_controls({"AfMode": controls.AfModeEnum.Continuous})
 elif focus == "Manual":
-    lens_position = focus_distance if 0 <= focus_distance <= 1024 else 30.0
+    lens_position = focus_distance if 0 <= focus_distance <= 10 else .5
     picam2.set_controls({"AfMode": controls.AfModeEnum.Manual, "LensPosition": lens_position})
 else:
     raise ValueError("Focus must be either 'Auto' or 'Manual'")
@@ -41,8 +41,8 @@ picam2.video_configuration.align()
 picam2.configure("video")
 
 ### Overlay parameters
-colour = (0, 255, 0)
-origin = (0, 30)
+colour = (0, 0, 255)
+origin = (5, 30)
 font = cv2.FONT_HERSHEY_SIMPLEX
 scale = 1
 thickness = 2
@@ -75,7 +75,7 @@ for h in range(video_number):
     ### Start camera with custom config and overlay text
     picam2.start()
     start = time.time()
-    picam2.start_recording(encoder, f"{video_dir}OverlayTest_{HostName}_{UID}_{h+1:03d}.h264", quality=Quality.HIGH)
+    picam2.start_recording(encoder, f"{video_dir}ManualFocus-{HostName}_{UID}_{h+1:03d}.h264", quality=Quality.HIGH)
     while (time.time() - start) < video_duration and running:
         time.sleep(0.1)
     
