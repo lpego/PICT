@@ -106,11 +106,14 @@ Recording at 1296*972px@10fps, autofocus continuous.
  - fixing at 7:30am, restarted recording with `start_video_v4.0.sh`.
  - Turned off at ~8am on Jun 11th, battery remaining 11%, `/dev/mcblk0p1` (28G total) is 28% full (7.4GB).
 
+Writing `.mp4` is very storage efficient, but consumes a lot more power, would be better to directly write frames in `.h264` or `.avi`... 
+
 # TODOs
 Test for power and storage efficiency
  - It seems like recording .mp4 is far less power efficient on the RPi Zero than writing raw .h264 format... 
  - Running autofocus in "continuous" mode might also have an impact
 
  # Resources
+  - Useful post with libcam video examples: https://www.raspberrypi.com/news/raspberry-pi-camera-module-more-on-video-capture/
   - Picamera2 manual: https://datasheets.raspberrypi.com/camera/picamera2-manual.pdf
   - General RPi camera references: https://www.raspberrypi.com/documentation/computers/camera_software.html
