@@ -81,7 +81,7 @@ for h in range(video_number):
     # picam2.stop_recording()
     # picam2.stop()
     
-    picam2.start_recording(encoder, f"OverlayTest_{filename}")
+    picam2.start_recording(encoder, f"{video_dir}OverlayTest_{HostName}_{UID}_{h+1:03d}.h264")
     time.sleep(5)
     picam2.stop_recording()
 
