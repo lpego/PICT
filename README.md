@@ -111,7 +111,7 @@ Writing `.mp4` is very storage efficient, but consumes a lot more power, would b
 # Testing direct recording (uncompressed)
 Testing `.h264` recording, with script `video_v5.0.py`
 
-Running into issues while trying to timestamp the frames as they are recorded... see commit f32bcaf0ff76e81e8741a304a5a9534ed3dbb48b
+Running into issues while trying to timestamp the frames as they are recorded... see commit https://github.com/lpego/PICT/commit/f32bcaf0ff76e81e8741a304a5a9534ed3dbb48b
 
 
 
