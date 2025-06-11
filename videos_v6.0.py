@@ -40,12 +40,14 @@ font = cv2.FONT_HERSHEY_SIMPLEX
 scale = 1
 thickness = 2
 
-
+### Define overlay function, apply to callback
 def apply_timestamp(request):
     timestamp = time.strftime("%Y-%m-%d %X")
     with MappedArray(request, "main") as m:
         cv2.putText(m.array, timestamp, origin, font, scale, colour, thickness)
 
+
+picam2.pre_callback = apply_timestamp
 
 ### Initialise encoder, w/ bitrate
 encoder = H264Encoder(10000000)
