@@ -115,6 +115,9 @@ Running into issues while trying to timestamp the frames as they are recorded...
 
 Looking for inspiration here: https://github.com/raspberrypi/picamera2/blob/main/examples/timestamped_video.py-- works a treat!
 
+Implemented in `videos_v6.0.py`, functional state with commit https://github.com/lpego/PICT/commit/8d0598134fa3e588ff735d8e5ead461cb3c52d34 
+
+
 
 
 # TODOs
