@@ -117,7 +117,7 @@ Looking for inspiration here: https://github.com/raspberrypi/picamera2/blob/main
 
 Implemented in `videos_v6.0.py`, functional state with commit https://github.com/lpego/PICT/commit/8d0598134fa3e588ff735d8e5ead461cb3c52d34 
 
-
+Fixed event handling loop: https://github.com/lpego/PICT/commit/a4c268f6f0c5717faa0e7d5ae4ae189783ae92f9
 
 
 # TODOs
