@@ -1,5 +1,5 @@
 from picamera2 import Picamera2, Preview
-from libcamera import controls
+from picamera2.encoders import H264Encoder, Quality
 from datetime import datetime
 import signal
 import time
@@ -27,6 +27,8 @@ config = picam2.create_video_configuration(
 )
 picam2.configure(config)
 
+encoder = H264Encoder
+
 # Signal handling
 running = True
 def handle_signal(sig, frame):
@@ -44,7 +46,8 @@ for h in range(video_number):
     # Start camera with overlay text
     picam2.start()
     picam2.set_controls({"FrameRate": target_fps})
-    picam2.start_recording(filename)
+    # picam2.start_recording(filename)
+    picam2.start_recording(encoder, filename, quality=Quality.HIGH)
 
     start = time.time()
 
