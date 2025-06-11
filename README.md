@@ -104,7 +104,7 @@ Recording at 1296*972px@10fps, autofocus continuous.
  - At 7:30 am, battery at 68% ... 
  - small mistake, forgo to to change the crontab, recorded using `start_video_v2.0.sh`... 
  - fixing at 7:30am, restarted recording with `start_video_v4.0.sh`.
- - Turned off at ~8am on Jun 11th, battery remaining 11%
+ - Turned off at ~8am on Jun 11th, battery remaining 11%, `/dev/mcblk0p1` (28G total) is 28% full (7.4GB).
 
 # TODOs
 Test for power and storage efficiency
