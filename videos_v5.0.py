@@ -19,15 +19,16 @@ UID = datetime.now().strftime('%Y-%m-%d_%H-%M') + '_' + uuid.uuid4().hex[:4].upp
 HostName = socket.gethostname()
 
 picam2 = Picamera2()
-config = picam2.create_video_configuration(
-    main={"size": (1296, 972), "format": "YUV420"},
-    controls={
-        "FrameRate": target_fps,
-        "AfMode": controls.AfModeEnum.Continuous
-    }
-)
-picam2.configure(config)
+# config = picam2.create_video_configuration(
+#     main={"size": (1296, 972), "format": "YUV420"},
+#     controls={
+#         "FrameRate": target_fps,
+#         "AfMode": controls.AfModeEnum.Continuous
+#     }
+# )
+# picam2.configure(config)
 
+picam2.configure(picam2.create_video_configuration())
 encoder = H264Encoder
 
 # Signal handling
