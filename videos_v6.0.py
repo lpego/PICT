@@ -74,11 +74,11 @@ for h in range(video_number):
     # picam2.start()
     picam2.set_controls({"FrameRate": target_fps})
     start = time.time()
+    picam2.start_recording(encoder, f"{video_dir}OverlayTest_{HostName}_{UID}_{h+1:03d}.h264", quality=Quality.HIGH)
     while (time.time() - start) < video_duration and running:
-        picam2.start_recording(encoder, f"{video_dir}OverlayTest_{HostName}_{UID}_{h+1:03d}.h264", quality=Quality.HIGH)
+        time.sleep(0.1)
     
     picam2.stop_recording()
-    picam2.stop()
     
     # ### Basic event loop for testing
     # picam2.start_recording(encoder, f"{video_dir}OverlayTest_{HostName}_{UID}_{h+1:03d}.h264")
@@ -89,3 +89,5 @@ for h in range(video_number):
 
     if not running:
         break
+
+picam2.stop()
