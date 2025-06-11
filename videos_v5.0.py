@@ -56,7 +56,7 @@ for h in range(video_number):
     while time.time() - start < video_duration and running:
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         overlay_text = f"{HostName}, {target_fps} fps, {timestamp}"
-        picam2.set_overlay_text(overlay_text)
+        picam2.set_overlay(overlay_text)
         time.sleep(1)  # Update every second
 
     picam2.stop_recording()
