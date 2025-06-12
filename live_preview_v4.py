@@ -130,8 +130,8 @@ def index():
                 </select>
 
                 <span id="manual-focus-input" style="display:none;">
-                    <label>Manual Focus (0-1024):</label>
-                    <input type="number" name="manual_focus" min="0 - infinity" max="10 - ~10cm" value="{settings['manual_focus']}" />
+                    <label>Manual Focus (min 0~infinity, max 10~10cm):</label>
+                    <input type="number" name="manual_focus" min="0" max="10" value="{settings['manual_focus']}" />
                 </span>
 
                 <br><br>
