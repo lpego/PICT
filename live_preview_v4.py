@@ -12,7 +12,7 @@ import subprocess
 
 app = FastAPI()
 
-SETTINGS_FILE = "settings.json"
+SETTINGS_FILE = "settings_live-preview.json"
 
 def load_settings():
     if os.path.exists(SETTINGS_FILE):
