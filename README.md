@@ -124,10 +124,19 @@ Working on the framerate: trying to get the framerate into `picamera2` config as
 > [!IMPORTANT]
 > When saving `.h264` files, ffmpeg / ffprobe will report an _incorrect_ FPS! This is due to the fact that `.h264` is not really a container and ffmepg cannot guess the framerate...
 
+# Cloning image and shrinking for distribution
+Win32DiskImager: input name of file where to save image (`.img`), slecet 'boot' partition of SD card, skip hash, do "Read". 
+
+Shrink image with https://github.com/Drewsif/PiShrink : 
+ - Follow instructions for WSL: https://github.com/Drewsif/PiShrink#windows-instructions
+ - 
+
 # TODOs
 Test for power and storage efficiency
  - It seems like recording .mp4 is far less power efficient on the RPi Zero than writing raw .h264 format... 
- - Running autofocus in "continuous" mode might also have an impact
+ - Running autofocus in "continuous" mode might also have an impact... 
+    - Implement a periodical focus sweep instead. 
+    - Implement setting an autofocus range, so that it doesn't focus on infinity.
 
  # Resources
   - Useful post with libcam video examples: https://www.raspberrypi.com/news/raspberry-pi-camera-module-more-on-video-capture/
