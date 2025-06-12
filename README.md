@@ -129,7 +129,9 @@ Win32DiskImager: input name of file where to save image (`.img`), slecet 'boot' 
 
 Shrink image with https://github.com/Drewsif/PiShrink : 
  - Follow instructions for WSL: https://github.com/Drewsif/PiShrink#windows-instructions
- - 
+ - Shrink image according to instructions here: https://github.com/Drewsif/PiShrink#usage
+    - I run: `sudo pishrink.sh -avz PICTv3.0.img`
+    - Shrunk from ~28GB (the block-by-block copy of the whole SD card) to 1.2 GB. 
 
 # TODOs
 Test for power and storage efficiency
