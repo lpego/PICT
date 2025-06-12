@@ -133,6 +133,10 @@ Shrink image with https://github.com/Drewsif/PiShrink :
     - I run: `sudo pishrink.sh -avz PICTv3.0.img`
     - Shrunk from ~28GB (the block-by-block copy of the whole SD card) to 1.2 GB. 
 
+Get an error when flashing to SD card with Raspberry Pi imager: "Image size is not multiple of 512 bytes"...
+
+Attempting to solve with: https://github.com/Drewsif/PiShrink/issues/195#issuecomment-1602477659
+
 # TODOs
 Test for power and storage efficiency
  - It seems like recording .mp4 is far less power efficient on the RPi Zero than writing raw .h264 format... 
