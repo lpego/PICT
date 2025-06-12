@@ -22,13 +22,13 @@ def load_settings():
                 "resolution": tuple(data["resolution"]),
                 "framerate": data["framerate"],
                 "autofocus": data.get("autofocus", True),
-                "manual_focus": data.get("manual_focus", 512),
+                "manual_focus": data.get("manual_focus", 0.0),
             }
     return {
         "resolution": (640, 480),
         "framerate": 20,
         "autofocus": True,
-        "manual_focus": 512,
+        "manual_focus": 0.0,
     }
 
 def save_settings(settings):
@@ -131,7 +131,7 @@ def index():
 
                 <span id="manual-focus-input" style="display:none;">
                     <label>Manual Focus (0-1024):</label>
-                    <input type="number" name="manual_focus" min="0" max="1024" value="{settings['manual_focus']}" />
+                    <input type="number" name="manual_focus" min="0 - infinity" max="10 - ~10cm" value="{settings['manual_focus']}" />
                 </span>
 
                 <br><br>
