@@ -56,11 +56,11 @@ picam2.start()
 def apply_focus_controls():
     if settings["autofocus"]:
         picam2.set_controls({
-            "AfMode": 2  # 2 = Continuous
+            "AfMode": controls.AfModeEnum.Continuous
         })
     else:
         picam2.set_controls({
-            "AfMode": 1,  # 1 = Manual
+            "AfMode": controls.AfModeEnum.Manual,
             "LensPosition": float(settings["manual_focus"])
         })
 
