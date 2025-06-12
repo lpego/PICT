@@ -25,10 +25,10 @@ def load_settings():
                 "manual_focus": data.get("manual_focus", 0.0),
             }
     return {
-        "resolution": (640, 480),
-        "framerate": 20,
+        "resolution": (1280, 720),
+        "framerate": 10,
         "autofocus": True,
-        "manual_focus": 0.0,
+        "manual_focus": 0.5,
     }
 
 def save_settings(settings):
