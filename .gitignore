@@ -5,6 +5,10 @@
 *.jpg
 *.jpeg
 *.out
+*.img
+*.img.gz
+
+/home/pi
 
 ### ========================= ###
 # Byte-compiled / optimized / DLL files
