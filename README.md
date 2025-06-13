@@ -28,14 +28,14 @@ Can save stills though:
 
 # Python script
 Copied over ``videos_v1.2.py`` from PICT_v2 repo: 
-```
+``` bash
 scp videos_v1.2.py pi@[IP]:/home/pi
 ```
 
 Testing imports, found that ``cv2`` and ``picamera2`` are not preinstalled (Python 3.11 is though). 
 
 Installing missing dependencies: 
-```
+``` bash
 sudo apt update 
 sudo apt install -y python3-opencv python3-picamera2
 ```
@@ -78,18 +78,18 @@ sudo apt update
 sudo apt install python3-pip
 pip3 install fastapi uvicorn
 ``` -->
-```
+``` bash
 sudo apt update
 sudo apt install python3-fastapi python-uvicorn
 ```
 
 Transfer over to the Pi the Python script `live_preview_v1.0.py`: 
-```
+``` bash
 scp live_preview_v1.0.py pi@192.168.137.148:/home/pi/
 ```
 
 Start the live server with `uvicorn`: 
-```
+``` bash
 python -m uvicorn live_preview_v4:app --host 0.0.0.0 --port 8000
 ```
 
@@ -97,6 +97,19 @@ On a browser (e.g. Firefox) go to: `192.168.137.148:8000`
 
 WORKS! Very basic and with some latency but not too bad. 
 Attempting to make server restart itself upon changing preview parameters is a bit more tricky, does not do it automatically, needs more work. 
+
+## Managing uvicorn server with systemd
+Uses `live_preview/live_preview_v5.py` and above. Need to set up a dedicated service, crete a new file: 
+``` bash
+sudo nano /etc/systemd/system/live-preview.service
+```
+..then paste contents of `live_preview/live-preview.service`. Stop the daemon, add the new service and restart: 
+``` bash
+sudo systemctl daemon-reexec
+sudo systemctl daemon-reload
+sudo systemctl enable live-preview.service
+sudo systemctl start live-preview.service
+```
 
 # Testing battery and storage efficiency
 *Test 1 -- 09 Jun, 11pm, battery 30Ah at 100%*
@@ -135,7 +148,7 @@ Shrink image with https://github.com/Drewsif/PiShrink :
 
 Get an error when flashing to SD card with Raspberry Pi imager: "Image size is not multiple of 512 bytes"...
 
-Attempting to solve with: https://github.com/Drewsif/PiShrink/issues/195#issuecomment-1602477659
+Attempting to solve with: https://github.com/Drewsif/PiShrink/issues/195#issuecomment-1602477659 - re-gzipped manually, shared. 
 
 # TODOs
 Test for power and storage efficiency
