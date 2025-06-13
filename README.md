@@ -117,6 +117,14 @@ sudo systemctl stop live-preview.service
 sudo journalctl -u live-preview.service -f  # View logs
 ```
 
+⚠ CAUTION: we need to be able to run sudo systemctl [...] without password, the following achieves that but this can be dangerous and a security risk, eve though it's limited to the live-preview service. 
+
+Add user `pi` to sudo-ers, to not prompt for password every time. Open sudo-ers file:
+``` bash
+sudo visudo
+```
+Add `pi ALL=NOPASSWD: /bin/systemctl restart live-preview.service` at the end. 
+
 # Testing battery and storage efficiency
 *Test 1 -- 09 Jun, 11pm, battery 30Ah at 100%*
 Recording at 1296*972px@10fps, autofocus continuous. 
