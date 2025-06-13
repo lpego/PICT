@@ -110,6 +110,12 @@ sudo systemctl daemon-reload
 sudo systemctl enable live-preview.service
 sudo systemctl start live-preview.service
 ```
+The uvicorn server should now be controlled by: 
+``` bash
+sudo systemctl restart live-preview.service
+sudo systemctl stop live-preview.service
+sudo journalctl -u live-preview.service -f  # View logs
+```
 
 # Testing battery and storage efficiency
 *Test 1 -- 09 Jun, 11pm, battery 30Ah at 100%*
