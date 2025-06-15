@@ -125,6 +125,13 @@ sudo visudo
 ```
 Add `pi ALL=NOPASSWD: /bin/systemctl restart live-preview.service` at the end. 
 
+### Fixing automatically restarting camera preview
+The uvicorn server does not automatically restart correctly when camera parameters are updated on the preview GUI. 
+
+Adding a landing page while the server reloads (https://github.com/lpego/PICT/commit/c00fa8d5749bef8e9e46e06003e30f1a0b9627d6), and that listens to response from the now reloaded camera preview page (https://github.com/lpego/PICT/commit/59890d504c5c62db4db59a2471b49bd778600a53). 
+
+✅ At commit https://github.com/lpego/PICT/commit/a704bcf0c4eaff84f605dd813e2928d3fef8e92c the live preview service functions correctly. 
+
 # Testing battery and storage efficiency
 **Test 1 -- 09 Jun, 11pm, battery 30Ah at 100%**
 Recording at 1296*972px@10fps, autofocus continuous. 
