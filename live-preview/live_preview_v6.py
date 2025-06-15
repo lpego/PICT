@@ -113,18 +113,18 @@ def index():
                     <option value="320x240" {"selected" if settings["resolution"] == (320, 240) else ""}>320x240</option>
                     <option value="640x480" {"selected" if settings["resolution"] == (640, 480) else ""}>640x480</option>
                     <option value="1280x720" {"selected" if settings["resolution"] == (1280, 720) else ""}>1280x720</option>
-                    <option value="384x216 (wide)" {"selected" if settings["resolution"] == (384, 216) else ""}>384x216 (wide)</option>
-                    <option value="768x432 (wide)" {"selected" if settings["resolution"] == (768, 432) else ""}>768x432 (wide)</option>
-                    <option value="1536x864 (wide)" {"selected" if settings["resolution"] == (1536, 864) else ""}>1536x864 (wide)</option>
+                    <option value="384x216" {"selected" if settings["resolution"] == (384, 216) else ""}>384x216 (wide)</option>
+                    <option value="768x432" {"selected" if settings["resolution"] == (768, 432) else ""}>768x432 (wide)</option>
+                    <option value="1536x864" {"selected" if settings["resolution"] == (1536, 864) else ""}>1536x864 (wide)</option>
                 </select>
 
                 <label>Framerate:</label>
                 <select name="framerate">
                     <option value="5" {"selected" if settings["framerate"] == 5 else ""}>5 FPS</option>
                     <option value="10" {"selected" if settings["framerate"] == 10 else ""}>10 FPS</option>
-                    <option value="10" {"selected" if settings["framerate"] == 15 else ""}>15 FPS</option>
+                    <option value="15" {"selected" if settings["framerate"] == 15 else ""}>15 FPS</option>
                     <option value="20" {"selected" if settings["framerate"] == 20 else ""}>20 FPS</option>
-                    <option value="20" {"selected" if settings["framerate"] == 25 else ""}>25 FPS</option>
+                    <option value="25" {"selected" if settings["framerate"] == 25 else ""}>25 FPS</option>
                     <option value="30" {"selected" if settings["framerate"] == 30 else ""}>30 FPS</option>
                 </select>
 
@@ -136,7 +136,7 @@ def index():
 
                 <span id="manual-focus-input" style="display:none;">
                     <label>Manual Focus (min 0~infinity, max 10~10cm):</label>
-                    <input type="number" name="manual_focus" min="0" max="10" value="{settings['manual_focus']}" />
+                    <input type="number" name="manual_focus" min="0" max="10" step="any" value="{settings['manual_focus']}" />
                 </span>
 
                 <br><br>
