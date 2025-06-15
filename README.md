@@ -177,7 +177,7 @@ trap "rm -f $LOCKFILE" EXIT
 **Test 1 -- 09 Jun, 11pm, battery 30Ah at 100%**
 Recording at 1296*972px@10fps, autofocus continuous. 
  - At 7:30 am, battery at 68% ... 
- - small mistake, forgo to to change the crontab, recorded using `start_video_v2.0.sh`... 
+ - small mistake, forgot to to change the crontab, recorded using `start_video_v2.0.sh`... 
  - fixing at 7:30am, restarted recording with `start_video_v4.0.sh`.
  - Turned off at ~8am on Jun 11th, battery remaining 11%, `/dev/mcblk0p1` (28G total) is 28% full (7.4GB).
 
@@ -191,6 +191,7 @@ Recording at 1296*972px@10fps, recording in `.h264`, autofocus continuous; editi
 55 5 * * * sudo reboot
 0 4 * * * /home/pi/start_video_v6.0.py
 ```
+*@Jun 15, 6pm: battery 74%; storage 29% (7.5 GB / 20 GB) -- that's a ~3.7% battery consumed per hour of recording, or ~1.11A per hour of recording.*
 
 
 # Testing direct recording (uncompressed)
