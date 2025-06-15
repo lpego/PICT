@@ -132,6 +132,16 @@ Adding a landing page while the server reloads (https://github.com/lpego/PICT/co
 
 ✅ At commit https://github.com/lpego/PICT/commit/a704bcf0c4eaff84f605dd813e2928d3fef8e92c the live preview service functions correctly. 
 
+# Auto-starting the live preview at boot, and auto-record after a delay.
+I want the Raspberry Pi to start recording automatically (with default settings) if there's no user activity for a certain time. 
+
+We implement this, we run a service, `autostart/idle-check.service` that calls the script `autostart/idle-check.sh` in order to track time since last activity (i.e. mostly SSH interactions in this case). 
+We also run a timer `autostart/idle_check.timer` that calls again every 1 minute `idle-check.service`. 
+
+If after 10 minutes (parameter set in `idle-check.sh`) no activity is detected, then `idle-check.sh` will: 
+ - stop the live-preview service
+ - start recording by calling `/home/pi/start_videos_v6.0.sh` (or whichever `.sh` script)
+
 # Testing battery and storage efficiency
 **Test 1 -- 09 Jun, 11pm, battery 30Ah at 100%**
 Recording at 1296*972px@10fps, autofocus continuous. 
