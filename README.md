@@ -174,6 +174,17 @@ Get an error when flashing to SD card with Raspberry Pi imager: "Image size is n
 
 Attempting to solve with: https://github.com/Drewsif/PiShrink/issues/195#issuecomment-1602477659 - re-gzipped manually, shared. 
 
+## Testing flashing image to new SD card
+Using the exact same model and size of SD card as original image cloned. 
+
+Flashing with Raspberry Pi Imager, selecting "no custom configuration" (as all configs are already written in the image). Writes and verifies correctly. 
+
+Booting Raspberry Pi... Takes quite a while to stop blinking. 
+
+Connecting via SSH (gets automatically assigned a different IP address than original image, thankfully) works fine. 
+
+File system successfully expanded on first boot! 
+
 # TODOs
 Test for power and storage efficiency
  - It seems like recording .mp4 is far less power efficient on the RPi Zero than writing raw .h264 format... 
