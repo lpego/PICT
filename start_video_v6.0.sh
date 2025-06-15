@@ -1,5 +1,14 @@
 #!/bin/bash
 
+# Lock file to prevent multiple instances
+LOCKFILE="/tmp/recording.lock"
+if [ -f "$LOCKFILE" ]; then
+    echo "[INFO] Recording already in progress. Skipping."
+    exit 0
+fi
+touch "$LOCKFILE"
+trap "rm -f $LOCKFILE" EXIT
+
 # # Close preview server
 sudo systemctl stop live-preview.service
 
