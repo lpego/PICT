@@ -160,6 +160,7 @@ We need to add some logic to the scripts launching the recording to make sure we
 
 We write a lockfile at the start of the `.sh` scripts and remove it at the end, as follows: 
 ``` bash
+# Lock file to prevent multiple instances
 LOCKFILE="/tmp/recording.lock"
 if [ -f "$LOCKFILE" ]; then
     echo "[INFO] Recording already in progress. Skipping."
@@ -169,8 +170,8 @@ touch "$LOCKFILE"
 trap "rm -f $LOCKFILE" EXIT
 ```
 
-> [!WARNING]
-> If the Pi dies unexpectedly (i.e. low battery, forcibly disconnected, etc), the lockfile might not get removed and autorecording would not start. 
+> [!NOTE]
+> If the Pi dies unexpectedly (i.e. low battery, forcibly disconnected, etc), the lockfile is removed from `/tmp` and will trigger autorecording after 10 minutes at next boot. 
 
 # Testing battery and storage efficiency
 **Test 1 -- 09 Jun, 11pm, battery 30Ah at 100%**
