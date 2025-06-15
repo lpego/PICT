@@ -155,6 +155,23 @@ sudo systemctl enable idle-check.timer
 sudo systemctl start idle-check.timer
 ```
 
+## Handle recording already in progress
+We need to add some logic to the scripts launching the recording to make sure we do not start another recording while another is in progress (as that would return an error because the resource, i.e. the camera is busy). 
+
+We write a lockfile at the start of the `.sh` scripts and remove it at the end, as follows: 
+``` bash
+LOCKFILE="/tmp/recording.lock"
+if [ -f "$LOCKFILE" ]; then
+    echo "[INFO] Recording already in progress. Skipping."
+    exit 0
+fi
+touch "$LOCKFILE"
+trap "rm -f $LOCKFILE" EXIT
+```
+
+> [!WARNING]
+> If the Pi dies unexpectedly (i.e. low battery, forcibly disconnected, etc), the lockfile might not get removed and autorecording would not start. 
+
 # Testing battery and storage efficiency
 **Test 1 -- 09 Jun, 11pm, battery 30Ah at 100%**
 Recording at 1296*972px@10fps, autofocus continuous. 
