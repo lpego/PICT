@@ -1,5 +1,6 @@
 from fastapi import FastAPI, Form
 from fastapi.responses import StreamingResponse, HTMLResponse, RedirectResponse
+from fastapi.staticfiles import StaticFiles
 from picamera2 import Picamera2
 from libcamera import controls
 import cv2
@@ -11,6 +12,8 @@ import sys
 import subprocess
 
 app = FastAPI()
+
+app.mount("/assets", StaticFiles(directory="assets"), name="assets")
 
 SETTINGS_FILE = "settings_live-preview.json"
 
@@ -165,11 +168,45 @@ def set_params(
     print(f"[INFO] Settings saved: {new_settings}")
     print("[INFO] Restarting via systemd...")
 
-    # Trigger systemd restart
-    subprocess.run(["sudo", "systemctl", "restart", "live-preview.service"])
-    return RedirectResponse("/", status_code=303)
-### This requires your script to be allowed to run sudo systemctl restart without a password.
+    ### Defer restart to background so we can redirect first;
+    ### This requires the script to be allowed to run sudo systemctl restart without a password.
+    threading.Thread(target=lambda: (
+        time.sleep(1),
+        subprocess.run(["sudo", "systemctl", "restart", "live-preview.service"])
+    ), daemon=True).start()
 
+    return RedirectResponse("/restarting", status_code=303)
+    
 @app.get("/video")
 def video():
     return StreamingResponse(mjpeg_stream(), media_type="multipart/x-mixed-replace; boundary=frame")
+
+@app.get("/restarting", response_class=HTMLResponse)
+def restarting():
+    return """
+    <html>
+        <head>
+            <title>Restarting...</title>
+            <script>
+                async function checkServer() {
+                    try {
+                        const response = await fetch("/video", { method: "GET" });
+                        if (response.status === 200) {
+                            window.location.href = "/";
+                        } else {
+                            throw new Error("not ready");
+                        }
+                    } catch (e) {
+                        setTimeout(checkServer, 1000);
+                    }
+                }
+                window.onload = checkServer;
+            </script>
+        </head>
+        <body style="font-family:sans-serif; text-align:center; padding-top:100px;">
+            <h2>Applying settings…</h2>
+            <p>Please wait while the server restarts.</p>
+            <img src="/assets/load.gif" alt="Loading..." width="100" />
+        </body>
+    </html>
+    """
