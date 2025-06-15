@@ -126,7 +126,7 @@ sudo visudo
 Add `pi ALL=NOPASSWD: /bin/systemctl restart live-preview.service` at the end. 
 
 # Testing battery and storage efficiency
-*Test 1 -- 09 Jun, 11pm, battery 30Ah at 100%*
+**Test 1 -- 09 Jun, 11pm, battery 30Ah at 100%**
 Recording at 1296*972px@10fps, autofocus continuous. 
  - At 7:30 am, battery at 68% ... 
  - small mistake, forgo to to change the crontab, recorded using `start_video_v2.0.sh`... 
@@ -134,6 +134,16 @@ Recording at 1296*972px@10fps, autofocus continuous.
  - Turned off at ~8am on Jun 11th, battery remaining 11%, `/dev/mcblk0p1` (28G total) is 28% full (7.4GB).
 
 Writing `.mp4` is very storage efficient, but consumes a lot more power, would be better to directly write frames in `.h264` or `.avi`... 
+
+**Test 2 -- 15 Jun, 11am, battery 30Ah at 99%**
+Recording at 1296*972px@10fps, recording in `.h264`, autofocus continuous; editing crontab: 
+``` 
+0 21 * * * sudo killall python
+1 21 * * * sudo ifconfig wlan0 down
+55 5 * * * sudo reboot
+0 4 * * * /home/pi/start_video_v6.0.py
+```
+
 
 # Testing direct recording (uncompressed)
 Testing `.h264` recording, with script `video_v5.0.py`
