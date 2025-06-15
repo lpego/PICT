@@ -113,9 +113,9 @@ def index():
                     <option value="320x240" {"selected" if settings["resolution"] == (320, 240) else ""}>320x240</option>
                     <option value="640x480" {"selected" if settings["resolution"] == (640, 480) else ""}>640x480</option>
                     <option value="1280x720" {"selected" if settings["resolution"] == (1280, 720) else ""}>1280x720</option>
-                    <option value="640x480" {"selected" if settings["resolution"] == (384, 216) else ""}>384x216 (wide)</option>
-                    <option value="320x240" {"selected" if settings["resolution"] == (768, 432) else ""}>768x432 (wide)</option>
-                    <option value="1280x720" {"selected" if settings["resolution"] == (1536, 864) else ""}>1536x864 (wide)</option>
+                    <option value="384x216 (wide)" {"selected" if settings["resolution"] == (384, 216) else ""}>384x216 (wide)</option>
+                    <option value="768x432 (wide)" {"selected" if settings["resolution"] == (768, 432) else ""}>768x432 (wide)</option>
+                    <option value="1536x864 (wide)" {"selected" if settings["resolution"] == (1536, 864) else ""}>1536x864 (wide)</option>
                 </select>
 
                 <label>Framerate:</label>
