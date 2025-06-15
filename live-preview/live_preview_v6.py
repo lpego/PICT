@@ -188,25 +188,28 @@ def restarting():
         <head>
             <title>Restarting...</title>
             <script>
-                async function checkServer() {
-                    try {
-                        const response = await fetch("/video", { method: "GET" });
-                        if (response.status === 200) {
-                            window.location.href = "/";
-                        } else {
-                            throw new Error("not ready");
-                        }
-                    } catch (e) {
-                        setTimeout(checkServer, 1000);
-                    }
+                function checkReady() {
+                    fetch("/", { method: "GET" })
+                        .then(response => {
+                            if (response.ok) {
+                                window.location.href = "/";
+                            } else {
+                                setTimeout(checkReady, 2000);
+                            }
+                        })
+                        .catch(() => {
+                            setTimeout(checkReady, 2000);
+                        });
                 }
-                window.onload = checkServer;
+                window.onload = () => {
+                    setTimeout(checkReady, 3000);  // initial wait
+                };
             </script>
         </head>
-        <body style="font-family:sans-serif; text-align:center; padding-top:100px;">
-            <h2>Applying settings…</h2>
-            <p>Please wait while the server restarts.</p>
-            <img src="/assets/load.gif" alt="Loading..." width="100" />
+        <body style="text-align: center; font-family: sans-serif; padding-top: 50px;">
+            <h2>Restarting server, please wait...</h2>
+            <img src="/assets/load.gif" alt="Loading..." style="width: 200px; height: auto;" />
+            <p>This may take a few seconds.</p>
         </body>
     </html>
     """
