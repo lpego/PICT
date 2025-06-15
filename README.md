@@ -83,14 +83,14 @@ sudo apt update
 sudo apt install python3-fastapi python-uvicorn
 ```
 
-Transfer over to the Pi the Python script `live_preview_v1.0.py`: 
+Transfer over to the Pi the Python script `live_preview_v5.py`: 
 ``` bash
-scp live_preview_v1.0.py pi@192.168.137.148:/home/pi/
+scp live_preview/live_preview_v5.py pi@192.168.137.148:/home/pi/
 ```
 
 Start the live server with `uvicorn`: 
 ``` bash
-python -m uvicorn live_preview_v4:app --host 0.0.0.0 --port 8000
+python -m uvicorn live_preview_v5:app --host 0.0.0.0 --port 8000
 ```
 
 On a browser (e.g. Firefox) go to: `192.168.137.148:8000`
@@ -99,11 +99,11 @@ WORKS! Very basic and with some latency but not too bad.
 Attempting to make server restart itself upon changing preview parameters is a bit more tricky, does not do it automatically, needs more work. 
 
 ## Managing uvicorn server with systemd
-Uses `live_preview/live_preview_v5.py` and above. Need to set up a dedicated service, crete a new file: 
+Uses `live_preview/live_preview_v5.py` and above. Need to set up a dedicated service, copy `live_preview/live-preview.service` to `home/pi` and move it in the systemd directory: 
 ``` bash
-sudo nano /etc/systemd/system/live-preview.service
+sudo mv live-preview.service /etc/systemd/system/live-preview.service
 ```
-..then paste contents of `live_preview/live-preview.service`. Stop the daemon, add the new service and restart: 
+Stop the daemon, add the new service and restart: 
 ``` bash
 sudo systemctl daemon-reexec
 sudo systemctl daemon-reload
@@ -117,7 +117,7 @@ sudo systemctl stop live-preview.service
 sudo journalctl -u live-preview.service -f  # View logs
 ```
 
-⚠ CAUTION: we need to be able to run sudo systemctl [...] without password, the following achieves that but this can be dangerous and a security risk, eve though it's limited to the live-preview service. 
+⚠ CAUTION: it needs to be able to run sudo systemctl [...] without password, the following achieves that but this can be dangerous and a security risk, even though it's limited to the live-preview service. 
 
 Add user `pi` to sudo-ers, to not prompt for password every time. Open sudo-ers file:
 ``` bash
