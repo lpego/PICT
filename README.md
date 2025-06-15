@@ -142,6 +142,19 @@ If after 10 minutes (parameter set in `idle-check.sh`) no activity is detected, 
  - stop the live-preview service
  - start recording by calling `/home/pi/start_videos_v6.0.sh` (or whichever `.sh` script)
 
+Steps to install:
+
+1. `scp -r autostart pi@192.168.137.71:/home/pi/`
+1. `chmod +x autostart/idle-check.sh`
+1. `sudo mv autostart/idle-check.service /etc/systemd/system/`
+1. `sudo mv autostart/idle-check.timer /etc/systemd/system`
+1. 
+``` bash
+sudo systemctl daemon-reexec
+sudo systemctl enable idle-check.timer
+sudo systemctl start idle-check.timer
+```
+
 # Testing battery and storage efficiency
 **Test 1 -- 09 Jun, 11pm, battery 30Ah at 100%**
 Recording at 1296*972px@10fps, autofocus continuous. 
