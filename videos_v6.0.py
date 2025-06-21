@@ -16,7 +16,7 @@ video_number = 336
 resolution = (1296, 972)  # Set the desired resolution as (width, height)
 target_fps = 10
 focus = "Auto"  # Set to "Auto" or "Manual"
-focus_distance = 10.0  # Only used if Focus is "Manual"; 0 (infinitY) and 10.0 (approx. 10cm); default is 0.5 (focus at ~1m))
+focus_distance = 10.0  # Only used if Focus is "Manual"; 0 (infinity) and 10.0 (approx. 10cm); default is 0.5 (focus at ~1m))
 video_dir = "/home/pi/record/videos/"
 os.makedirs(video_dir, exist_ok=True)
 
