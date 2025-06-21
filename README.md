@@ -174,7 +174,7 @@ trap "rm -f $LOCKFILE" EXIT
 > If the Pi dies unexpectedly (i.e. low battery, forcibly disconnected, etc), the lockfile is removed from `/tmp` and will trigger autorecording after 10 minutes at next boot. 
 
 # Testing battery and storage efficiency
-**Test 1 -- 09 Jun, 11pm, battery 30Ah at 100%**
+## Test 1 - 09 Jun, 11pm, battery 30Ah at 100%
 Recording at 1296*972px@10fps, autofocus continuous. 
  - At 7:30 am, battery at 68% ... 
  - small mistake, forgot to to change the crontab, recorded using `start_video_v2.0.sh`... 
@@ -183,7 +183,7 @@ Recording at 1296*972px@10fps, autofocus continuous.
 
 Writing `.mp4` is very storage efficient, but consumes a lot more power, would be better to directly write frames in `.h264` or `.avi`... 
 
-**Test 2 -- 15 Jun, 11am, battery 30Ah at 99%**
+## Test 2 - 15 Jun, 11am, battery 30Ah at 99%
 Recording at 1296*972px@10fps, recording in `.h264`, autofocus continuous; editing crontab: 
 ``` 
 0 21 * * * sudo killall python
@@ -191,7 +191,16 @@ Recording at 1296*972px@10fps, recording in `.h264`, autofocus continuous; editi
 55 5 * * * sudo reboot
 0 4 * * * /home/pi/start_video_v6.0.py
 ```
-*@Jun 15, 6pm: battery 74%; storage 29% (7.5 GB / 20 GB) -- that's a ~3.7% battery consumed per hour of recording, or ~1.11A per hour of recording.*
+
+### End of test
+*Interim results:* Jun 15, 6pm: battery 74%; storage 29% (7.5 GB / 20 GB) -- that's a ~3.7% battery consumed per hour of recording, or ~1.11A per hour of recording.
+
+**Files excerpts in `/tests/Test1/`**
+
+*Last recording:* 17 Jun, 7:34am
+*Total hours recorded*: 15 Jun, 11-21 = 10h; 16 Jun, 6-21 = 15h; 17 Jun, 6-7:30 = 1.5h; 
+
+**TOT = 26.5h** ; that's ~3.73% battery consumed per hour of recording, or 1.13A per hour of recording. 
 
 
 # Testing direct recording (uncompressed)
