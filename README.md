@@ -195,12 +195,33 @@ Recording at 1296*972px@10fps, recording in `.h264`, autofocus continuous; editi
 ### End of test
 *Interim results:* Jun 15, 6pm: battery 74%; storage 29% (7.5 GB / 20 GB) -- that's a ~3.7% battery consumed per hour of recording, or ~1.11A per hour of recording.
 
-**Files excerpts in `/tests/Test1/`**
+Files excerpts in `/tests/Test1/`
 
-*Last recording:* 17 Jun, 7:34am
-*Total hours recorded*: 15 Jun, 11-21 = 10h; 16 Jun, 6-21 = 15h; 17 Jun, 6-7:30 = 1.5h; 
+*Last recording:* 17 Jun, 7:34am; *Total hours recorded*: 15 Jun, 11-21 = 10h; 16 Jun, 6-21 = 15h; 17 Jun, 6-7:30 = 1.5h.
+
+*Storage:* 7.24GB free of 28.4GB tot; that's a total of 21.16GB occupied. Average video size (i.e. set tp 30 minutes length) is: 332.69 MB. That's 665.38 MB per hour of recording. 
 
 **TOT = 26.5h** ; that's ~3.73% battery consumed per hour of recording, or 1.13A per hour of recording. 
+
+## Test 3 - 16 Jun, 6am, on mains power - with Raspberry Pi camera v3 **wide**
+Recording at 1296*972px@10fps, recording in `.h264`, autofocus continuous; crontab: 
+```
+0 21 * * * sudo killall python | true
+1 21 * * * sudo ifconfig wlan0 down
+55 5 * * * sudo reboot
+0 6 * * * /home/pi/start_video_v6.0.sh
+```
+This test was to see if the wide version of the camera has any differences in file size or handling; does not seem so. Will try to record at actual wide proportions next test. 
+
+## Test 4 - 21 Jun, 5pm, battery 30Ah at 100%
+Recording at 1296*972px@10fps, recording in `.h264`, focus fixed @ [...]; crontab: 
+``` 
+0 21 * * * sudo killall python
+1 21 * * * sudo ifconfig wlan0 down
+55 5 * * * sudo reboot
+0 4 * * * /home/pi/start_video_v6.0.py
+```
+
 
 
 # Testing direct recording (uncompressed)
