@@ -174,6 +174,10 @@ trap "rm -f $LOCKFILE" EXIT
 > If the Pi dies unexpectedly (i.e. low battery, forcibly disconnected, etc), the lockfile is removed from `/tmp` and will trigger autorecording after 10 minutes at next boot. 
 
 # Testing battery and storage efficiency
+
+> [!NOTE]
+> The base system image has a footprint of 2.5GB on `/dev/mcblk0p2`, ~10% fo the total available size. The space available for videos is ~26.5 GBs.
+
 ## Test 1 - 09 Jun, 11pm, battery 30Ah at 100%
 Recording at 1296*972px@10fps, autofocus continuous. 
  - At 7:30 am, battery at 68% ... 
@@ -213,7 +217,17 @@ Recording at 1296*972px@10fps, recording in `.h264`, autofocus continuous; cront
 ```
 This test was to see if the wide version of the camera has any differences in file size or handling; does not seem so. Will try to record at actual wide proportions next test. 
 
-## Test 4 - 21 Jun, 5pm, battery 30Ah at 100%
+## Test 4 - 21 Jun, 5:15pm, mains power - with Raspberry Pi camera v3 **wide**
+Recording at 1536*864px@10fps, recording in `.h264`, focus fixed @ 4.0 (~25cm); crontab: 
+```
+0 21 * * * sudo killall python | true
+1 21 * * * sudo ifconfig wlan0 down
+55 5 * * * sudo reboot
+0 6 * * * /home/pi/start_video_v6.2.sh
+```
+*...in progress...*
+
+## Test 5 - 21 Jun, 5pm, battery 30Ah at 100%
 Recording at 1296*972px@10fps, recording in `.h264`, focus fixed @ [...]; crontab: 
 ``` 
 0 21 * * * sudo killall python
