@@ -233,7 +233,14 @@ Average file size obtained with:
 find . -name "*.h264" -type f -printf "%s\n" | awk 'BEGIN{total=0; count=0} {total+=$1; count++} END {if (count>0) print total/count/1024/1024 " MB"; else print "0 MB"}'
 ```
 
-*...in progress...*
+### End of test
+Files excerpts in `/tests/Test4/`; 
+
+*Last recording:* 23 Jun, ; *Total hours recorded*: 21 Jun, 17:15-21 = 3.75h; 22 Jun, 6-21 = 15h; 23 Jun, 6-18:20 = 12.3h.
+
+*Storage:* 0GB free of 29GB tot; Average video size (i.e. set tp 30 minutes length) is: 246.09 MB. That's 492.18 MB per hour of recording. 
+
+**TOT = 31.05h**; that's ~3.22% battery consumed per hour of recording, or 0.96A per hour of recording.
 
 ## Test 5 - 22 Jun, 9:20am, battery 30Ah at 100%
 Recording at 1296*972px@10fps, recording in `.h264`, focus fixed @ 4.0 (~25cm); crontab: 
