@@ -225,18 +225,32 @@ Recording at 1536*864px@10fps, recording in `.h264`, focus fixed @ 4.0 (~25cm); 
 55 5 * * * sudo reboot
 0 6 * * * /home/pi/start_video_v6.2.sh
 ```
+
+*Interim results:* 22 Jun, 9:20am, 8.4GB used (31% total); average file size: 371.75 MB. 
+
+Average file size obtained with:
+```bash
+find . -name "*.h264" -type f -printf "%s\n" | awk 'BEGIN{total=0; count=0} {total+=$1; count++} END {if (count>0) print total/count/1024/1024 " MB"; else print "0 MB"}'
+```
+
 *...in progress...*
 
-## Test 5 - 21 Jun, 5pm, battery 30Ah at 100%
-Recording at 1296*972px@10fps, recording in `.h264`, focus fixed @ [...]; crontab: 
+## Test 5 - 22 Jun, 9:20am, battery 30Ah at 100%
+Recording at 1296*972px@10fps, recording in `.h264`, focus fixed @ 4.0 (~25cm); crontab: 
 ``` 
 0 21 * * * sudo killall python
 1 21 * * * sudo ifconfig wlan0 down
 55 5 * * * sudo reboot
-0 4 * * * /home/pi/start_video_v6.0.py
+0 6 * * * /home/pi/start_video_v6.1.py
 ```
+### End of test
+Files excerpts in `/tests/Test5/`; blurry as heck, not sure why, set the same parameter as in the preview and that was fine... 
 
+*Last recording:* 24 Jun, 6:02am; *Total hours recorded*: 22 Jun, 9:20-21 = 11:40h; 23 Jun, 6-21 = 15h; 24 Jun, 6-6:02 ~ 0h.
 
+*Storage:* 7.9GB free of 29GB tot; that's a total of 21GB occupied. Average video size (i.e. set tp 30 minutes length) is: 307.45 MB. That's 614.9 MB per hour of recording. 
+
+**TOT = 36.6h** ; that's ~2.73% battery consumed per hour of recording, or 0.83A per hour of recording.
 
 # Testing direct recording (uncompressed)
 Testing `.h264` recording, with script `video_v5.0.py`
