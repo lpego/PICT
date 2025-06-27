@@ -1,3 +1,5 @@
+⚠ **This is the development branch!** ⚠
+
 # PICT
 A new an improved version of PICT (Droissart et al. 2021), based on Bookworm
 
@@ -26,7 +28,7 @@ Cannot get a live preview, no X-view device available on headless Pi.
 Can save stills though: 
 ``rpicam-jpeg --output test.jpg``
 
-# Python script
+# Python scripts
 Copied over ``videos_v1.2.py`` from PICT_v2 repo: 
 ``` bash
 scp videos_v1.2.py pi@[IP]:/home/pi
