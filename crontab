@@ -24,4 +24,4 @@
 0 21 * * * sudo killall python || true
 1 21 * * * sudo ifconfig wlan0 down
 55 5 * * * sudo reboot
-0 6 * * * /home/pi/start_video_v2.0.sh
+0 6 * * * /home/pi/start_video_v6.2.sh
