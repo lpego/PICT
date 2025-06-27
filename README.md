@@ -93,7 +93,7 @@ First, connect via SSH, then type:
 ``` bash
 crontab -e
 ```
-and you should be presented with a text interface; scroll all the way to the bottom (on smartphone apps there often are dedicated special buttons for this), and you will see this snippet: 
+and you should be presented with a text interface; scroll all the way to the bottom (on smartphone apps there often are special buttons for arrow keys), and you will see this snippet: 
 ``` bash
 0 21 * * * sudo killall python
 1 21 * * * sudo ifconfig wlan0 down
@@ -110,6 +110,36 @@ Brief explanation line by line:
 If you want to change the recording times, simply modify the corresponding lines, respecting the format `mm HH * * * command` as shown above. 
 
 When done, exit by pressing <kbd>Ctrl</kbd> + <kbd>X</kbd> (or equivalent buttons on smartphone apps). 
+
+## Change recording parameters
+For now, the only way to change recording parameters like resolution, focus mode, etc is to directly modify the Python script.
+
+The scripts are located in the root of this repo, you should use the most recent one, in this case `videos_v6.2.py`. 
+
+To open the file, type: 
+``` bash
+nano videos_v6.2.py
+```
+
+You will be presented with a text interface; navigate down using the arrow keys (or equivalent button on smartphone apps) and find this code block (starts at line 13): 
+```python
+### Parameters declaration
+video_duration = 1800
+video_number = 336
+resolution = (1536, 864)  # Set the desired resolution as (width, height), WIDE format
+target_fps = 10
+focus = "Manual"  # Set to "Auto" or "Manual"
+focus_distance = 4  # Only used if Focus is "Manual"; 0 (infinity) and 10.0 (approx. 10cm); default is 0.5 (focus at ~1m))
+video_dir = "/home/pi/record/videos/"
+os.makedirs(video_dir, exist_ok=True)
+```
+
+This is where you can modify the recording parameters; most variables are self-explanatory, but `video_duration` is expressed in seconds (e.g. 1800 second = 30 minutes); `video_number` is hwo many videos to record (e.g. 336 / 2 / 14 = 12 days of recording 14 hours per day, videos of 0.5 hours); `focus_distance` is expressed in dioptres, 1/focus_distance (e.g. 1/4 = 25 cm). 
+
+Modify the desired parameters, then pres <kbd>Ctrl</kbd> + <kbd>X</kbd> (or equivalent buttons on smartphone apps), confirm overwriting with the same name. 
+
+## Start recording manually
+If you want to start recording 
 
 ## Recording autostart
 
