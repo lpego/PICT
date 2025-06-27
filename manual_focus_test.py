@@ -83,6 +83,13 @@ for focus in [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0]:
     print(f"Setting focus to {focus}m")
     picam2.set_controls({"LensPosition": focus})
     time.sleep(1)  # Let lens settle
+    # Wait a few frames to ensure metadata is available
+    try:
+        meta = picam2.capture_metadata(timeout=5)
+        current_lens_position = f"{meta.get('LensPosition', 'N/A'):.2f}"
+    except Exception as e:
+        print(f"Warning: Failed to get metadata for lens position: {e}")
+        current_lens_position = "N/A"
 
     for h in range(video_number):
         filename = f"{video_dir}FocusTest_LensPosition_{focus}-{HostName}_{UID}_{h+1:03d}.h264"
@@ -90,15 +97,6 @@ for focus in [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0]:
 
         # Start recording
         picam2.start_recording(encoder, filename, quality=Quality.HIGH)
-
-        # Wait a few frames to ensure metadata is available
-        time.sleep(0.5)
-        try:
-            meta = picam2.capture_metadata(timeout=5)
-            current_lens_position = f"{meta.get('LensPosition', 'N/A'):.2f}"
-        except Exception as e:
-            print(f"Warning: Failed to get metadata for lens position: {e}")
-            current_lens_position = "N/A"
 
         # Record for duration
         start = time.time()
