@@ -39,11 +39,25 @@ Selecting additional settings before flashing:
 In "Services" tab: 
  - Enable SSH; use password authentication
 
-### Checking v3 RPi camera
-Necessary libraries `libcamera` and `rpicam` are pre-installed on OS version Bookworm, see https://www.raspberrypi.com/documentation/computers/camera_software.html
+# Connecting to the Pi
+In the following section I assume the configuration outlined above, that assumes you are using a laptop or a smartphone as hotspot with this parameters: 
+ - WiFi SSID: `PICT_network_1`
+ - password: `pollinators1`
+ - band: `2.4GHz`
 
-You can check if everything works by running: 
-``rpicam-jpeg --output test.jpg``
+The Pi is already configured to look for this network and connect to it. 
+
+How you can verify if the Pi is connected to your hotspot varies depending on your device, but the steps are generally something like: 
+ - Windows: Wi-Fi settings > Mobile hotspot
+ - Android: Settings > W-Fi & Internet > Hotspot & tethering > Wi-Fi hotspot
+    - Alternatively, you can download [NetAnalyzer](https://techet.net/netanalyzer/) and use the "LAN scan" function
+
+What you are after is the IP address assigned to your Pi, as you will need this for the next steps.
+
+## Live preview server
+At boot, the Pi should automatically start a server showing the camera stream, which is useful to check framing and adjust parameters. 
+
+## Connect via SSH
 
 # Changelog
 *v3.1.0* - working towards a cleaned version of the repo to be cloned directly on the Pi.
