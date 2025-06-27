@@ -335,6 +335,7 @@ git clone https://github.com/lpego/PICT.git
 ## Creating an install script
 The idea is that one can clone the repo, and update it subsequently if needed, and then run this script to apply the changes from the github repo directly to their Pi (assuming that dir structure etc is the same). 
 
+`install.sh` basically retraces my steps in installing the various services etc and overwrites existing scripts in `/home/pi`. 
 
 # TODOs
  - Need to test different quality presets and their impact on power consumption.
