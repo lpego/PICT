@@ -1,15 +1,16 @@
 ### Custom ignores
-*.mp4
-*.h264
-*.png
-*.jpg
-*.jpeg
-*.out
-*.img
-*.img.gz
+/*.mp4
+/*.h264
+/*.png
+/*.jpg
+/*.jpeg
+/*.out
+/*.img
+/*.img.gz
 
 /home/pi
 /tests/
+/record/
 
 ### ========================= ###
 # Byte-compiled / optimized / DLL files
