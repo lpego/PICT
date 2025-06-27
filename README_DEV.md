@@ -1,8 +1,5 @@
 ⚠ **These are the development notes** ⚠
 
-# PICT
-A new an improved version of PICT (Droissart et al. 2021), based on Bookworm
-
 # Installing the OS
 Using Raspberry Pi Images v1.9.4 - https://downloads.raspberrypi.org/imager/imager_latest.exe 
 
@@ -321,14 +318,14 @@ Testing with stripped down version of main recording script (`videos_v6.2.py`), 
 The issue seemed to be that we need to *start* the camera before configuring it. 
 
 # TODOs
-Test for power and storage efficiency
  - Need to test different quality presets and their impact on power consumption.
- - It seems like recording .mp4 is far less power efficient on the RPi Zero than writing raw .h264 format... 
  - Running autofocus in "continuous" mode might also have an impact... 
     - Implement a periodical focus sweep instead. 
     - Implement setting an autofocus range, so that it doesn't focus on infinity.
+ - Maybe test other encoders for power consumption? 
+ - It seems like recording .mp4 is far less power efficient on the RPi Zero than writing raw .h264 format... ✅
 
- # Resources
+# Resources
   - Useful post with libcam video examples: https://www.raspberrypi.com/news/raspberry-pi-camera-module-more-on-video-capture/
   - Picamera2 manual: https://datasheets.raspberrypi.com/camera/picamera2-manual.pdf
   - General RPi camera references: https://www.raspberrypi.com/documentation/computers/camera_software.html
