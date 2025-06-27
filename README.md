@@ -1,9 +1,14 @@
-⚠ **This is the development branch!** ⚠
-
 # PICT
-A new an improved version of PICT (Droissart et al. 2021), based on Bookworm
+A new an improved version of PICT ([Droissart *et al.*, 2021](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.13618)), based on Bookworm OS. 
+
+# Quickstart
+The easiest way to get started is to use a pre-built image. 
+
+You can find image ISOs here (requires permission): https://drive.google.com/drive/u/2/folders/136YHJ19of67geJv1VAqPn2JNwlM1lIbM
 
 # Installing the OS
+You can also start from a stock Raspberry Pi image and follow the steps below.
+
 Using Raspberry Pi Images v1.9.4 - https://downloads.raspberrypi.org/imager/imager_latest.exe 
 
 Selecting these values in RPi Imager: 
@@ -11,21 +16,17 @@ Selecting these values in RPi Imager:
  - OS version: Pi OS lite (32-bit) - no desktop, no dependencies
 
 Selecting additional settings before flashing: 
- - Username: pi ; password: raspberry
- - WiFi SSID: PICT_network_1 ; password: pollinators1
- - wireless LAN country: CH
- - locale: EU/ Zurich
+ - Username: `pi` ; password: `raspberry`
+ - WiFi SSID: `PICT_network_1` ; password: `pollinators1`
+ - wireless LAN country: `CH`
+ - locale: `EU/Zurich`
 In "Services" tab: 
  - Enable SSH; use password authentication
 
-Works, confirmed. 
+## Checking v3 RPi camera
+Necessary libraries `libcamera` and `rpicam` are pre-installed on OS version Bookworm, see https://www.raspberrypi.com/documentation/computers/camera_software.html
 
-# Checking v3 RPi camera
-Both libcamera and rpicam libraries are pre-installed. See https://www.raspberrypi.com/documentation/computers/camera_software.html
-
-Cannot get a live preview, no X-view device available on headless Pi. 
-
-Can save stills though: 
+You can check if everything works by running: 
 ``rpicam-jpeg --output test.jpg``
 
 # Python scripts
