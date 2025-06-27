@@ -81,10 +81,9 @@ ssh pi@192.168.137.71
 type password `raspberry` when prompted. 
 
 you should see a greeting message like this: 
-[!ssh](assets/ssh.png)
+![ssh](assets/ssh.png)
 
-The basic functioning is the same, but on smartphone apps the interface might be somewhat different. 
-
+The basic steps to get to this point are the same across platforms, but on smartphone apps the interface might be somewhat different. 
 
 # Use in the field
 ## crontab scheduling
