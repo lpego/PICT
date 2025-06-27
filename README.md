@@ -149,6 +149,9 @@ You can run these files by typing:
 These files will stop the live server, if active, log the output of the python script and prevent another recording to automatically start. 
 
 ## Recording autostart
+There is a service running on the Pi that monitors user activity, and if none is detected (i.e. connection to SSH, open web browser with live preview server, running commands), after 10 minutes the recording will start using the latest shell script,. in this case `start_video_v6.2.sh`. 
+
+If there is already a recording in progress (e.g. it was started manually), a new one will not be triggered. 
 
 # Changelog
 *v3.1.0* - working towards a cleaned version of the repo to be cloned directly on the Pi.
