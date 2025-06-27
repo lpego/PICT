@@ -85,7 +85,7 @@ you should see a greeting message like this:
 
 The basic steps to get to this point are the same across platforms, but on smartphone apps the interface might be somewhat different. 
 
-# Use in the field
+# Recording video
 ## crontab scheduling
 To change when you want to start and stop the recording, you should use `crontab`. 
 
@@ -98,14 +98,14 @@ and you should be presented with a text interface; scroll all the way to the bot
 0 21 * * * sudo killall python
 1 21 * * * sudo ifconfig wlan0 down
 55 5 * * * sudo reboot
-0 6 * * * /home/pi/start_video_v6.2.py
+0 6 * * * /home/pi/start_video_v6.1.py
 ```
 
 Brief explanation line by line: 
  - `0 21 * * * sudo killall python` means: at 21:00, stop all python processes (i.e. any recording in progress)
  - `1 21 * * * sudo ifconfig wlan0 down` means: at 21:01, switch off Wi-Fi
  - `55 5 * * * sudo reboot` means: at 5:55, reboot the system
- - `0 6 * * * /home/pi/start_video_v6.2.py` means: at 6:00, start recording using script `start_video_v6.2.sh`
+ - `0 6 * * * /home/pi/start_video_v6.1.py` means: at 6:00, start recording using script `start_video_v6.1.sh`
 
 If you want to change the recording times, simply modify the corresponding lines, respecting the format `mm HH * * * command` as shown above. 
 
@@ -114,11 +114,11 @@ When done, exit by pressing <kbd>Ctrl</kbd> + <kbd>X</kbd> (or equivalent button
 ## Change recording parameters
 For now, the only way to change recording parameters like resolution, focus mode, etc is to directly modify the Python script.
 
-The scripts are located in the root of this repo, you should use the most recent one, in this case `videos_v6.2.py`. 
+The scripts are located in the root of this repo, you should use the most recent one, in this case `videos_v6.1.py`. 
 
 To open the file, type: 
 ``` bash
-nano videos_v6.2.py
+nano videos_v6.1.py
 ```
 
 You will be presented with a text interface; navigate down using the arrow keys (or equivalent button on smartphone apps) and find this code block (starts at line 13): 
@@ -139,7 +139,7 @@ This is where you can modify the recording parameters; most variables are self-e
 Modify the desired parameters, then pres <kbd>Ctrl</kbd> + <kbd>X</kbd> (or equivalent buttons on smartphone apps), confirm overwriting with the same name. 
 
 ## Start recording manually
-If you want to start recording manually, you can do so by running the dedicate `.sh` scripts, use the one named as the python file you want to use, in this case `start_video_v6.2.sh`. 
+If you want to start recording manually, you can do so by running the dedicate `.sh` scripts, use the one named as the python file you want to use, in this case `start_video_v6.1.sh`. 
 
 You can run these files by typing: 
 ``` bash
@@ -149,14 +149,14 @@ You can run these files by typing:
 These files will stop the live server, if active, log the output of the python script and prevent another recording to automatically start. 
 
 ## Recording autostart
-There is a service running on the Pi that monitors user activity, and if none is detected (i.e. connection to SSH, open web browser with live preview server, running commands), after 10 minutes the recording will start using the latest shell script,. in this case `start_video_v6.2.sh`. 
+There is a service running on the Pi that monitors user activity, and if none is detected (i.e. connection to SSH, open web browser with live preview server, running commands), after 10 minutes the recording will start using the latest shell script,. in this case `start_video_v6.1.sh`. 
 
 If there is already a recording in progress (e.g. it was started manually), a new one will not be triggered. 
 
 # Changelog
-*v3.1.0* - working towards a cleaned version of the repo to be cloned directly on the Pi.
+<!-- *v3.1.0* - working towards a cleaned version of the repo to be cloned directly on the Pi.
 
-[...]
+[...] -->
 
 *v3.0.2* - implementing managing of preview server and recording via system services
 
