@@ -57,9 +57,9 @@ What you are after is the IP address assigned to your Pi, as you will need this 
 ## Live preview server
 At boot, the Pi should automatically start a server showing the camera stream, which is useful to check framing and adjust parameters. 
 
-To access the server, in any browser (both from laptop or smartphone) type in the IP address of your Pi, followed by port 7000. For example, in my case, I would need to type (the IP address will be different for you): 
+To access the server, in any browser (both from laptop or smartphone) type in the IP address of your Pi, followed by port 8000. For example, in my case, I would need to type (the IP address will be different for you): 
 ```
-192.168.137.71:7000
+192.168.137.71:8000
 ```
 
 Press Enter and you should be presented with a screen like this: 
