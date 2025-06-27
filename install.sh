@@ -1,9 +1,11 @@
 #!/bin/bash
 
-### Change to the install.sh directory
+### Change to the install.sh directory, update repo
 cd "$(dirname "$0")"
 
+echo "### ~~~~~~~~~~~~~~~~~~~~~~~~~ ###"
 echo "Pulling latest changes from repository..."
+
 git pull
 
 ### Substituting existing crontab with default
@@ -16,7 +18,7 @@ crontab crontab
 echo "### ~~~~~~~~~~~~~~~~~~~~~~~~~ ###"
 echo "Installing live server..."
 
-sudo mv live-preview/live-preview.service /etc/systemd/system/live-preview.service
+sudo cp live-preview/live-preview.service /etc/systemd/system/live-preview.service
 
 sudo systemctl daemon-reexec
 sudo systemctl daemon-reload
@@ -28,8 +30,8 @@ echo "### ~~~~~~~~~~~~~~~~~~~~~~~~~ ###"
 echo "Installing autostart with idle check..."
 
 chmod +x autostart/idle-check.sh
-sudo mv autostart/idle-check.service /etc/systemd/system/idle-check.service
-sudo mv autostart/idle-check.timer /etc/systemd/system/idle-check.timer
+sudo cp autostart/idle-check.service /etc/systemd/system/idle-check.service
+sudo cp autostart/idle-check.timer /etc/systemd/system/idle-check.timer
 
 sudo systemctl daemon-reexec
 sudo systemctl enable idle-check.timer
@@ -39,8 +41,8 @@ sudo systemctl start idle-check.timer
 echo "### ~~~~~~~~~~~~~~~~~~~~~~~~~ ###"
 echo "Installing video recording scripts..."
 
-mv videos*.py /home/pi/
-mv start_video*.sh /home/pi/
+cp videos*.py /home/pi/
+cp start_video*.sh /home/pi/
 chmod +x /home/pi/start_video*.sh
 
 ### Finish message
