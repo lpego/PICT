@@ -57,6 +57,9 @@ What you are after is the IP address assigned to your Pi, as you will need this 
 ## Live preview server
 At boot, the Pi should automatically start a server showing the camera stream, which is useful to check framing and adjust parameters. 
 
+You should be presented with a screen like this: 
+![live-server](assets/live-server.png)
+
 ## Connect via SSH
 
 # Changelog
