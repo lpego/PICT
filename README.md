@@ -301,8 +301,25 @@ Connecting via SSH (gets automatically assigned a different IP address than orig
 
 File system successfully expanded on first boot! 
 
+# Investigating why manual focus parameters seem to be ignored
+While in the live preview server the manual focus parameter seem to work as expected, in the recording scripts it is ignored: even though the trigger for manual focus is accepted, the value for lens position is not. 
+
+Testing with custom recording script that cycles a few manual focus parameters: `manual_focus_test.py`. 
+
+Working off of the examples in the [manual](https://datasheets.raspberrypi.com/camera/picamera2-manual.pdf), pages 32-33, specifically: 
+
+``` python
+from picamera2 import Picamera2
+from libcamera import controls
+
+picam2 = Picamera2()
+picam2.start(show_preview=True)
+picam2.set_controls({"AfMode": controls.AfModeEnum.Manual, "LensPosition": 0.0})
+```
+
 # TODOs
 Test for power and storage efficiency
+ - Need to test different quality presets and their impact on power consumption.
  - It seems like recording .mp4 is far less power efficient on the RPi Zero than writing raw .h264 format... 
  - Running autofocus in "continuous" mode might also have an impact... 
     - Implement a periodical focus sweep instead. 
