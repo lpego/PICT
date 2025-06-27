@@ -1,5 +1,5 @@
 from picamera2 import Picamera2
-from time import time
+import time
 
 picam2 = Picamera2()
 picam2.start()
