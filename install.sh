@@ -18,6 +18,8 @@ crontab crontab
 echo "### ~~~~~~~~~~~~~~~~~~~~~~~~~ ###"
 echo "Installing live server..."
 
+cp -r live-preview /home/pi/
+
 sudo cp live-preview/live-preview.service /etc/systemd/system/live-preview.service
 
 sudo systemctl daemon-reexec
