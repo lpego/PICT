@@ -139,7 +139,14 @@ This is where you can modify the recording parameters; most variables are self-e
 Modify the desired parameters, then pres <kbd>Ctrl</kbd> + <kbd>X</kbd> (or equivalent buttons on smartphone apps), confirm overwriting with the same name. 
 
 ## Start recording manually
-If you want to start recording 
+If you want to start recording manually, you can do so by running the dedicate `.sh` scripts, use the one named as the python file you want to use, in this case `start_video_v6.2.sh`. 
+
+You can run these files by typing: 
+``` bash
+./start_video_v6.1.sh
+```
+
+These files will stop the live server, if active, log the output of the python script and prevent another recording to automatically start. 
 
 ## Recording autostart
 
