@@ -275,7 +275,7 @@ Working on the framerate: trying to get the framerate into `picamera2` config as
 > When saving `.h264` files, ffmpeg / ffprobe will report an _incorrect_ FPS! This is due to the fact that `.h264` is not really a container and ffmepg cannot guess the framerate...
 
 # Cloning image and shrinking for distribution
-Win32DiskImager: input name of file where to save image (`.img`), slecet 'boot' partition of SD card, skip hash, do "Read". 
+Win32DiskImager: input name of file where to save image (`.img`), select 'boot' partition of SD card, skip hash, do "Read". 
 
 Shrink image with https://github.com/Drewsif/PiShrink : 
  - Follow instructions for WSL: https://github.com/Drewsif/PiShrink#windows-instructions
