@@ -1,11 +1,23 @@
 # PICT
 A new an improved version of PICT ([Droissart *et al.*, 2021](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.13618)), based on Bookworm OS. 
 
+# Hardware
+In this guide I assume you are using a [Raspberry Pi Zero W](https://www.raspberrypi.com/products/raspberry-pi-zero-w/) and a [Raspberry Pi Camera v3](https://www.raspberrypi.com/products/camera-module-3/) (with IR filter, non-wide). 
+
+For more detailed hardware specifications, take a look at ['How to build PICT' guide](https://zenodo.org/records/6301001), most of the recommendations still apply. 
+
 # Quickstart
 The easiest way to get started is to use a pre-built image. 
 
 You can find image ISOs here (requires permission): https://drive.google.com/drive/u/2/folders/136YHJ19of67geJv1VAqPn2JNwlM1lIbM
 
+Use a software like [Raspberry Pi Imager](https://downloads.raspberrypi.org/imager/imager_latest.exe) or [Balena Etcher](https://etcher.balena.io/) to write these images to an SD card. 
+
+> [!NOTE]
+> If using [Raspberry Pi Imager](https://downloads.raspberrypi.org/imager/imager_latest.exe), when prompted write the image without modifying the configuration. 
+
+
+ 
 # Installing the OS
 You can also start from a stock Raspberry Pi image and follow the steps below.
 
