@@ -321,12 +321,19 @@ The issue seemed to be that we need to *start* the camera before configuring it.
 
 # Using git for over-the-air updates
 
-## Install git
+## Install git, clone repo
 ``` bash
 sudo apt-get update 
 sudo apt install git
 ```
 
+Then clone the repository in the home dir of the pi: 
+``` bash
+git clone https://github.com/lpego/PICT.git
+```
+
+## Creating an install script
+The idea is that one can clone the repo, and update it subsequently if needed, and then run this script to apply the changes from the github repo directly to their Pi (assuming that dir structure etc is the same). 
 
 
 # TODOs
