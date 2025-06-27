@@ -15,7 +15,7 @@ video_duration = 1800
 video_number = 336
 resolution = (1296, 972)  # Set the desired resolution as (width, height)
 target_fps = 10
-focus = "Auto"  # Set to "Auto" or "Manual"
+focus = "Manual"  # Set to "Auto" or "Manual"
 focus_distance = 4  # Only used if Focus is "Manual"; 0 (infinity) and 10.0 (approx. 10cm); default is 0.5 (focus at ~1m))
 video_dir = "/home/pi/record/videos/"
 os.makedirs(video_dir, exist_ok=True)
@@ -75,7 +75,7 @@ for h in range(video_number):
     ### Start camera with custom config and overlay text
     picam2.start()
     start = time.time()
-    picam2.start_recording(encoder, f"{video_dir}AutoFocus-{HostName}_{UID}_{h+1:03d}.h264", quality=Quality.HIGH)
+    picam2.start_recording(encoder, f"{video_dir}{HostName}_{UID}_{h+1:03d}.h264", quality=Quality.HIGH)
     while (time.time() - start) < video_duration and running:
         time.sleep(0.1)
     
