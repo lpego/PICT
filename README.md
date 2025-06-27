@@ -317,6 +317,9 @@ picam2.start(show_preview=True)
 picam2.set_controls({"AfMode": controls.AfModeEnum.Manual, "LensPosition": 0.0})
 ```
 
+Testing with stripped down version of main recording script (`videos_v6.2.py`), and seems to work. 
+The issue seemed to be that we need to *start* the camera before configuring it. 
+
 # TODOs
 Test for power and storage efficiency
  - Need to test different quality presets and their impact on power consumption.
