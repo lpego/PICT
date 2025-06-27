@@ -285,7 +285,20 @@ Shrink image with https://github.com/Drewsif/PiShrink :
 
 Get an error when flashing to SD card with Raspberry Pi imager: "Image size is not multiple of 512 bytes"...
 
-Attempting to solve with: https://github.com/Drewsif/PiShrink/issues/195#issuecomment-1602477659 - re-gzipped manually, shared. 
+Attempting to solve with: https://github.com/Drewsif/PiShrink/issues/195#issuecomment-1602477659 - worked! 
+
+The exact steps are: 
+ - Extract the `.gz` archive with 7zip or something
+ - in WSL, run the following commands: 
+    ``` bash
+    size=$(stat -c %s PICTv3.1.0.img)
+    pad_size=$(( 512 - $size % 512 )) 
+    dd if=/dev/zero of=PICTv3.1.0.img bs=1 count=$pad_size seek=$size
+    ```
+ - Re-compress manually (this will substitute the `.img` file with a `.img.gz`):
+    ``` bash
+    gzip PICTv3.1.0.img
+    ```
 
 ## Testing flashing image to new SD card
 Using the exact same model and size of SD card as original image cloned. 
