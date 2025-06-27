@@ -7,17 +7,23 @@ In this guide I assume you are using a [Raspberry Pi Zero W](https://www.raspber
 For more detailed hardware specifications, take a look at ['How to build PICT' guide](https://zenodo.org/records/6301001), most of the recommendations still apply. 
 
 # Quickstart
-The easiest way to get started is to use a pre-built image. 
+The easiest way to get started is to use one of the pre-built images I provide.
 
-You can find image ISOs here (requires permission): https://drive.google.com/drive/u/2/folders/136YHJ19of67geJv1VAqPn2JNwlM1lIbM
+You can download image ISOs here (requires permission): https://drive.google.com/drive/u/2/folders/136YHJ19of67geJv1VAqPn2JNwlM1lIbM
 
-Use a software like [Raspberry Pi Imager](https://downloads.raspberrypi.org/imager/imager_latest.exe) or [Balena Etcher](https://etcher.balena.io/) to write these images to an SD card. 
+Use a software like [Raspberry Pi Imager](https://downloads.raspberrypi.org/imager/imager_latest.exe) or [Balena Etcher](https://etcher.balena.io/) to flash one of these images to an SD card. 
 
 > [!NOTE]
 > If using [Raspberry Pi Imager](https://downloads.raspberrypi.org/imager/imager_latest.exe), when prompted write the image without modifying the configuration. 
 
+Once flashing is complete, insert the SD card in your PI ad connect to power; you might have to wait for up to 10 minutes for the first boot procedure to finish. 
 
- 
+> [!NOTE]
+> The OS images provided should auto-expand to fill all available space on the SD card; is that doesn't happen for some reason, you can use the `raspi-config` utility to do that on the Pi directly. 
+
+
+
+
 # Installing the OS
 You can also start from a stock Raspberry Pi image and follow the steps below.
 
