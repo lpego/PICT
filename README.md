@@ -68,6 +68,23 @@ Press Enter and you should be presented with a screen like this:
 There are a few preset values for resolution, autofocus and manual focus you can choose from; click apply and wait for the server to restart. 
 
 ## Connect via SSH
+Currently, to modify configuration and manually start recording, you need to connect to the Pi via SSH. 
+
+To do so, you will need to open a terminal: 
+ - Windows: press "Start", type `cmd`, press enter
+ - Android: download [JuiceSSH](https://juicessh.com/) or [Termius](https://termius.com/), open that app
+
+Type `ssh pi@[yourIPaddress]`, for example in my case: 
+``` bash
+ssh pi@192.168.137.71
+```
+type password `raspberry` when prompted. 
+
+you should see a greeting message like this: 
+[!ssh](assets/ssh.png)
+
+The basic functioning is the same, but on smartphone apps the interface might be somewhat different. 
+
 
 # Use in the field
 ## crontab scheduling
