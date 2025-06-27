@@ -317,6 +317,18 @@ picam2.set_controls({"AfMode": controls.AfModeEnum.Manual, "LensPosition": 0.0})
 Testing with stripped down version of main recording script (`videos_v6.2.py`), and seems to work. 
 The issue seemed to be that we need to *start* the camera before configuring it. 
 
+❌ still was not able to burn properly the lens position in the script, skipping for now as is non-critical...
+
+# Using git for over-the-air updates
+
+## Install git
+``` bash
+sudo apt-get update 
+sudo apt install git
+```
+
+
+
 # TODOs
  - Need to test different quality presets and their impact on power consumption.
  - Running autofocus in "continuous" mode might also have an impact... 
