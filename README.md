@@ -158,6 +158,8 @@ If there is already a recording in progress (e.g. it was started manually), a ne
 
 [...] -->
 
+*v3.0.3* - cleaning up repo, writing instructions
+
 *v3.0.2* - implementing managing of preview server and recording via system services
 
 *v3.0.1* - implementation of live preview server based on `uvicorn`.
