@@ -337,6 +337,8 @@ The idea is that one can clone the repo, and update it subsequently if needed, a
 
 `install.sh` basically retraces my steps in installing the various services etc and overwrites existing scripts in `/home/pi`. 
 
+At commit https://github.com/lpego/PICT/commit/2cf4cd47115d248b4247366eb39e466c4f93302e confirmed that it works ✅
+
 # TODOs
  - Need to test different quality presets and their impact on power consumption.
  - Running autofocus in "continuous" mode might also have an impact... 
