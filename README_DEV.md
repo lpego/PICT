@@ -258,6 +258,16 @@ Files excerpts in `/tests/Test5/`; blurry as heck, not sure why, set the same pa
 
 **TOT = 36.6h** ; that's ~2.73% battery consumed per hour of recording, or 0.83A per hour of recording.
 
+## Test 6 - 27 Jun, 20:10, battery 30Ah at 100%
+Recording at 1296*972px@1fps, recording in `.h264`, focus fixed @ 3.0 (~33cm); crontab: 
+``` 
+0 21 * * * sudo killall python
+1 21 * * * sudo ifconfig wlan0 down
+55 5 * * * sudo reboot
+0 6 * * * /home/pi/start_video_v6.1.py
+```
+
+
 # Testing direct recording (uncompressed)
 Testing `.h264` recording, with script `video_v5.0.py`
 
