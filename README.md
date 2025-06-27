@@ -87,6 +87,29 @@ The basic steps to get to this point are the same across platforms, but on smart
 
 # Use in the field
 ## crontab scheduling
+To change when you want to start and stop the recording, you should use `crontab`. 
+
+First, connect via SSH, then type: 
+``` bash
+crontab -e
+```
+and you should be presented with a text interface; scroll all the way to the bottom (on smartphone apps there often are dedicated special buttons for this), and you will see this snippet: 
+``` bash
+0 21 * * * sudo killall python
+1 21 * * * sudo ifconfig wlan0 down
+55 5 * * * sudo reboot
+0 6 * * * /home/pi/start_video_v6.2.py
+```
+
+Brief explanation line by line: 
+ - `0 21 * * * sudo killall python` means: at 21:00, stop all python processes (i.e. any recording in progress)
+ - `1 21 * * * sudo ifconfig wlan0 down` means: at 21:01, switch off Wi-Fi
+ - `55 5 * * * sudo reboot` means: at 5:55, reboot the system
+ - `0 6 * * * /home/pi/start_video_v6.2.py` means: at 6:00, start recording using script `start_video_v6.2.sh`
+
+If you want to change the recording times, simply modify the corresponding lines, respecting the format `mm HH * * * command` as shown above. 
+
+When done, exit by pressing <kbd>Ctrl</kbd> + <kbd>X</kbd> (or equivalent buttons on smartphone apps). 
 
 ## Recording autostart
 
