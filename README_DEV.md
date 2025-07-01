@@ -266,7 +266,10 @@ Recording at 1296*972px@1fps, recording in `.h264`, focus fixed @ 3.0 (~33cm); c
 55 5 * * * sudo reboot
 0 6 * * * /home/pi/start_video_v6.1.py
 ```
+### End of test
+Jul 01, 8:20am, battery still at 10%. Memory full. 
 
+*Last receding:* Jun 30, 18:30.
 
 # Testing direct recording (uncompressed)
 Testing `.h264` recording, with script `video_v5.0.py`
