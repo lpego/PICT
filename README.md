@@ -25,13 +25,13 @@ Once flashing is complete, insert the SD card in your Pi ad connect to power; yo
 ## Installing the OS
 Alternatively, you can also start from a stock Raspberry Pi image and follow the steps below.
 
-Using Raspberry Pi Images v1.9.4 - https://downloads.raspberrypi.org/imager/imager_latest.exe 
+Using Raspberry Pi Imager v1.9.4 - https://downloads.raspberrypi.org/imager/imager_latest.exe 
 
 Selecting these values in RPi Imager: 
  - Model: RPi Zero
  - OS version: Pi OS lite (32-bit) - no desktop, no dependencies
 
-Selecting additional settings before flashing: 
+Selecting additional settings before flashing (input appropriate values for your WiFi network and region): 
  - Username: `pi` ; password: `raspberry`
  - WiFi SSID: `PICT_network_1` ; password: `pollinators1`
  - wireless LAN country: `CH`
@@ -40,7 +40,7 @@ In "Services" tab:
  - Enable SSH; use password authentication
 
 # Connecting to the Pi
-In the following section I assume the configuration outlined above, that assumes you are using a laptop or a smartphone as hotspot with this parameters: 
+In the following section I presume the configuration outlined above, that assumes you are using a laptop or a smartphone as hotspot with this parameters: 
  - WiFi SSID: `PICT_network_1`
  - password: `pollinators1`
  - band: `2.4GHz`
@@ -78,9 +78,9 @@ Type `ssh pi@[yourIPaddress]`, for example in my case:
 ``` bash
 ssh pi@192.168.137.71
 ```
-type password `raspberry` when prompted. 
+type password `raspberry` when prompted (unless you changed at configuration time). 
 
-you should see a greeting message like this: 
+You should see a greeting message like this: 
 ![ssh](assets/ssh.png)
 
 The basic steps to get to this point are the same across platforms, but on smartphone apps the interface might be somewhat different. 
@@ -134,22 +134,23 @@ video_dir = "/home/pi/record/videos/"
 os.makedirs(video_dir, exist_ok=True)
 ```
 
-This is where you can modify the recording parameters; most variables are self-explanatory, but `video_duration` is expressed in seconds (e.g. 1800 second = 30 minutes); `video_number` is hwo many videos to record (e.g. 336 / 2 / 14 = 12 days of recording 14 hours per day, videos of 0.5 hours); `focus_distance` is expressed in dioptres, 1/focus_distance (e.g. 1/4 = 25 cm). 
+This is where you can modify the recording parameters; most variables are self-explanatory, but `video_duration` is expressed in seconds (e.g. 1800 second = 30 minutes); `video_number` is how many videos to record (e.g. 336 / 2 / 14 = 12 days of recording 14 hours per day, videos of 0.5 hours); `focus_distance` is expressed in dioptres, 1/focus_distance (e.g. 1/4 = 25 cm). 
 
-Modify the desired parameters, then pres <kbd>Ctrl</kbd> + <kbd>X</kbd> (or equivalent buttons on smartphone apps), confirm overwriting with the same name. 
+Modify the desired parameters, then pres <kbd>Ctrl</kbd> + <kbd>X</kbd> (or equivalent buttons on smartphone apps), and confirm overwriting with the same name. 
 
 ## Start recording manually
-If you want to start recording manually, you can do so by running the dedicate `.sh` scripts, use the one named as the python file you want to use, in this case `start_video_v6.1.sh`. 
+If you want to start recording manually, you can do so by running the dedicated `.sh` scripts; use the one named the same as the python file you want to use, in this case `start_video_v6.1.sh`. 
 
 You can run these files by typing: 
 ``` bash
 ./start_video_v6.1.sh
 ```
 
-These files will stop the live server, if active, log the output of the python script and prevent another recording to automatically start. 
+These scripts will stop the live server, if active, log the output of the python script and prevent another recording to automatically start. 
+`crontab` scheduling will take place as instructed. 
 
 ## Recording autostart
-There is a service running on the Pi that monitors user activity, and if none is detected (i.e. connection to SSH, open web browser with live preview server, running commands), after 10 minutes the recording will start using the latest shell script,. in this case `start_video_v6.1.sh`. 
+There is a service running on the Pi that monitors user activity, and if none is detected (i.e. no connection to SSH, no open web browser with live preview server, not running commands), after 10 minutes of inactivity the recording will start using the latest shell script, in this case `start_video_v6.1.sh`. 
 
 If there is already a recording in progress (e.g. it was started manually), a new one will not be triggered. 
 
