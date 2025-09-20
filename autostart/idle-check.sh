@@ -19,7 +19,7 @@ SESSION_ID=$(loginctl | grep ' pi ' | awk '{print $1}')
 LIVE_PREVIEW_SERVICE="live-preview.service"
 
 # Recording script path
-RECORDING_SCRIPT="/home/pi/start_videos_v6.0.sh"
+RECORDING_SCRIPT="/home/pi/start_video_v6.1.sh"
 
 # Convert logind IdleSinceHint to seconds
 IDLE_MICRO=$(loginctl show-session "$SESSION_ID" -p IdleSinceHint | cut -d= -f2)
