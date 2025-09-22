@@ -1,13 +1,13 @@
 # PICT
 A new an improved version of PICT ([Droissart *et al.*, 2021](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.13618)), based on Bookworm OS. 
 
-For building and installation instructions see [Hardware](#hardware) and [Installation](##installation). 
+For building and installation instructions see [Hardware](#hardware) and [Installation](#installation). 
 
-For field protocol see [Field checklist](##field-checklist).
+For field checklist see [Field protocol](##field-protocol).
 
 For more details on how to operate the PICT, see [How to](#how-to). 
 
-# Field checklist
+# Field protocol
 This is intended to be a quick list to check order of operations while in the field. 
 
 ## First setup
