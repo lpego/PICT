@@ -1,6 +1,63 @@
 # PICT
 A new an improved version of PICT ([Droissart *et al.*, 2021](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.13618)), based on Bookworm OS. 
 
+For building and installation instructions see [Hardware](#hardware) and [Installation](##installation). 
+
+For field protocol see [Field checklist](##field-checklist).
+
+For more details on how to operate the PICT, see [How to](#how-to). 
+
+# Field checklist
+This is intended to be a quick list to check order of operations while in the field. 
+
+## First setup
+1. Position the camera looking at the object of interest
+1. On your smartphone (or tablet), start the WiFi hotspot
+1. Wait (up to 3 minutes!) for the Raspberry Pi(s) to connect to your hotspot
+1. Find out the IP address of the Raspberry Pi you want to connect to
+1. Open your browser and type `[your IP address]:8000`, hit <kbd>Enter</kbd>
+1. This will open the live preview
+    - adjust the physical position of the camera to get a good shot of your object
+    - adjust the settings from the menus (i.e. resolution, focus, framerate)
+1. Open your SSH app and connect to the Pi
+1. Check the recording schedule: 
+    - type `crontab -l`, hit <kbd>Enter</kbd>
+    - if it needs changing, type `crontab -e` and use the special buttons on your SSH app to navigate the text and edit it; exit with <kbd>Ctrl</kbd> + <kbd>X</kbd>, save file ("Save modified buffer? "<kbd>Y</kbd>) and overwrite ("File Name to Write: ..." <kbd>Enter</kbd>). 
+1. Check the recording parameters for the camera: 
+    - type `nano videos_v6.1.py`, hit <kbd>Enter</kbd>
+    - With the special buttons in your SSH app, scroll down to the section "### Parameter declaration"; 
+    - Check that the parameters are the same as your selected ones in the live preview
+    - If not, edit them directly here (respect the correct formatting!) 
+    - Exit with <kbd>Ctrl</kbd> + <kbd>X</kbd>, save file ("Save modified buffer? "<kbd>Y</kbd>) and overwrite ("File Name to Write: ..." <kbd>Enter</kbd>).
+1. Start the recording manually: type `./start_video_v6.1.sh`
+1. Check that the recording has started: 
+    - type `ls -lh record/videos`, hit <kbd>Enter</kbd>
+    - look at the size of the most recent file at the bottom
+    - Hit ⬆ on your SSH app, this will bring up the last command (`ls -lh record/videos`), hit <kbd>Enter</kbd>
+    - The file size should slowly grow over time if the camera is recording. 
+1. Finally, disconnect from the Pi using your SSH app.
+
+## Returning to the field
+1. On your smartphone (or tablet), start the WiFi hotspot
+1. Wait (up to 3 minutes!) for the Raspberry Pi(s) to connect to your hotspot
+1. Find out the IP address of the Raspberry Pi you want to connect to
+1. Open your SSH app and connect to the Pi
+1. [OPTIONAL] Check the recordings has started: 
+    - type `ls -lh record/videos`, hit <kbd>Enter</kbd>
+    - take note of the last file name (useful to troubleshoot if recording has failed etc)
+1. Stop the recording: type `sudo python killall`
+1. Turn off the Pi: `sudo halt`
+1. Disconnect from battery
+1. Take out the SD card with the videos from the Pi
+1. [OPTIONAL] move to another object / plant
+1. Place a fresh SD card in
+1. Replace battery with fresh one if necessary
+1. Reconnect battery to Pi
+1. Position camera
+1. Check shot and settings from live preview
+1. If no settings changes necessary, start recording; if changes necessary see above. 
+1. Disconnect from Pi
+
 # Hardware
 In this guide I assume you are using a [Raspberry Pi Zero W](https://www.raspberrypi.com/products/raspberry-pi-zero-w/) and a [Raspberry Pi Camera v3](https://www.raspberrypi.com/products/camera-module-3/) (with IR filter, non-wide). 
 
@@ -25,13 +82,13 @@ Once flashing is complete, insert the SD card in your Pi ad connect to power; yo
 ## Installing the OS
 Alternatively, you can also start from a stock Raspberry Pi image and follow the steps below.
 
-Using Raspberry Pi Images v1.9.4 - https://downloads.raspberrypi.org/imager/imager_latest.exe 
+Using Raspberry Pi Imager v1.9.4 - https://downloads.raspberrypi.org/imager/imager_latest.exe 
 
 Selecting these values in RPi Imager: 
  - Model: RPi Zero
  - OS version: Pi OS lite (32-bit) - no desktop, no dependencies
 
-Selecting additional settings before flashing: 
+Selecting additional settings before flashing (input appropriate values for your WiFi network and region): 
  - Username: `pi` ; password: `raspberry`
  - WiFi SSID: `PICT_network_1` ; password: `pollinators1`
  - wireless LAN country: `CH`
@@ -39,8 +96,9 @@ Selecting additional settings before flashing:
 In "Services" tab: 
  - Enable SSH; use password authentication
 
-# Connecting to the Pi
-In the following section I assume the configuration outlined above, that assumes you are using a laptop or a smartphone as hotspot with this parameters: 
+# How to
+## Connect to the Pi
+In the following section I presume the configuration outlined above, that assumes you are using a laptop or a smartphone as hotspot with this parameters: 
  - WiFi SSID: `PICT_network_1`
  - password: `pollinators1`
  - band: `2.4GHz`
@@ -54,7 +112,7 @@ How you can verify if the Pi is connected to your hotspot varies depending on yo
 
 What you are after is the IP address assigned to your Pi, as you will need this for the next steps.
 
-## Live preview server
+### Access live preview server
 At boot, the Pi should automatically start a server showing the camera stream, which is useful to check framing and adjust parameters. 
 
 To access the server, in any browser (both from laptop or smartphone) type in the IP address of your Pi, followed by port 8000. For example, in my case, I would need to type (the IP address will be different for you): 
@@ -78,15 +136,15 @@ Type `ssh pi@[yourIPaddress]`, for example in my case:
 ``` bash
 ssh pi@192.168.137.71
 ```
-type password `raspberry` when prompted. 
+type password `raspberry` when prompted (unless you changed at configuration time). 
 
-you should see a greeting message like this: 
+You should see a greeting message like this: 
 ![ssh](assets/ssh.png)
 
 The basic steps to get to this point are the same across platforms, but on smartphone apps the interface might be somewhat different. 
 
-# Recording video
-## crontab scheduling
+## Record video
+### crontab scheduling
 To change when you want to start and stop the recording, you should use `crontab`. 
 
 First, connect via SSH, then type: 
@@ -111,7 +169,7 @@ If you want to change the recording times, simply modify the corresponding lines
 
 When done, exit by pressing <kbd>Ctrl</kbd> + <kbd>X</kbd> (or equivalent buttons on smartphone apps). 
 
-## Change recording parameters
+### Change recording parameters
 For now, the only way to change recording parameters like resolution, focus mode, etc is to directly modify the Python script.
 
 The scripts are located in the root of this repo, you should use the most recent one, in this case `videos_v6.1.py`. 
@@ -134,30 +192,27 @@ video_dir = "/home/pi/record/videos/"
 os.makedirs(video_dir, exist_ok=True)
 ```
 
-This is where you can modify the recording parameters; most variables are self-explanatory, but `video_duration` is expressed in seconds (e.g. 1800 second = 30 minutes); `video_number` is hwo many videos to record (e.g. 336 / 2 / 14 = 12 days of recording 14 hours per day, videos of 0.5 hours); `focus_distance` is expressed in dioptres, 1/focus_distance (e.g. 1/4 = 25 cm). 
+This is where you can modify the recording parameters; most variables are self-explanatory, but `video_duration` is expressed in seconds (e.g. 1800 second = 30 minutes); `video_number` is how many videos to record (e.g. 336 / 2 / 14 = 12 days of recording 14 hours per day, videos of 0.5 hours); `focus_distance` is expressed in dioptres, 1/focus_distance (e.g. 1/4 = 25 cm). 
 
-Modify the desired parameters, then pres <kbd>Ctrl</kbd> + <kbd>X</kbd> (or equivalent buttons on smartphone apps), confirm overwriting with the same name. 
+Modify the desired parameters, then pres <kbd>Ctrl</kbd> + <kbd>X</kbd> (or equivalent buttons on smartphone apps), and confirm overwriting with the same name. 
 
-## Start recording manually
-If you want to start recording manually, you can do so by running the dedicate `.sh` scripts, use the one named as the python file you want to use, in this case `start_video_v6.1.sh`. 
+### Start recording manually
+If you want to start recording manually, you can do so by running the dedicated `.sh` scripts; use the one named the same as the python file you want to use, in this case `start_video_v6.1.sh`. 
 
 You can run these files by typing: 
 ``` bash
 ./start_video_v6.1.sh
 ```
 
-These files will stop the live server, if active, log the output of the python script and prevent another recording to automatically start. 
+These scripts will stop the live server, if active, log the output of the python script and prevent another recording to automatically start. 
+`crontab` scheduling will take place as instructed. 
 
-## Recording autostart
-There is a service running on the Pi that monitors user activity, and if none is detected (i.e. connection to SSH, open web browser with live preview server, running commands), after 10 minutes the recording will start using the latest shell script,. in this case `start_video_v6.1.sh`. 
+### Autostart recording
+There is a service running on the Pi that monitors user activity, and if none is detected (i.e. no connection to SSH, no open web browser with live preview server, not running commands), after 10 minutes of inactivity the recording will start using the latest shell script, in this case `start_video_v6.1.sh`. 
 
 If there is already a recording in progress (e.g. it was started manually), a new one will not be triggered. 
 
 # Changelog
-<!-- *v3.1.0* - working towards a cleaned version of the repo to be cloned directly on the Pi.
-
-[...] -->
-
 *v3.0.3* - cleaning up repo, writing instructions
 
 *v3.0.2* - implementing managing of preview server and recording via system services
