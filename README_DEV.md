@@ -269,7 +269,7 @@ Recording at 1296*972px@1fps, recording in `.h264`, focus fixed @ 3.0 (~33cm); c
 ### End of test
 Jul 01, 8:20am, battery still at 10%. Memory full. 
 
-*Last receding:* Jun 30, 18:30.
+*Last recording:* Jun 30, 18:30.
 
 # Testing direct recording (uncompressed)
 Testing `.h264` recording, with script `video_v5.0.py`
@@ -366,6 +366,7 @@ The idea is that one can clone the repo, and update it subsequently if needed, a
 At commit https://github.com/lpego/PICT/commit/2cf4cd47115d248b4247366eb39e466c4f93302e confirmed that it works ✅
 
 # TODOs
+ - Print an error to terminal when you start a recording and one is already in progress
  - Need to test different quality presets and their impact on power consumption.
  - Running autofocus in "continuous" mode might also have an impact... 
     - Implement a periodical focus sweep instead. 
