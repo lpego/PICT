@@ -64,6 +64,8 @@ In this guide I assume you are using a [Raspberry Pi Zero W](https://www.raspber
 For more detailed hardware specifications, take a look at ['How to build PICT' guide](https://zenodo.org/records/6301001), most of the recommendations still apply. 
 
 # Installation
+If you are on Windows, you will need to install and run [Ext2 volume manager](https://sourceforge.net/projects/ext2fsd/files/Ext2fsd/0.61/) to be able to read the data off of SD cards once flashed. There will be two partitions, the one with the data is `rootfs`. 
+
 ## Quickstart
 The easiest way to get started is to use one of the pre-built images I provide.
 
